@@ -1,11 +1,11 @@
 
-app.controller('editController', ['$scope','friendsFactory', '$routeParams', function($scope, friendsFactory, $routeParams) {
-   friendsFactory.show($routeParams.id, function(returnedData){
-     $scope.friend = returnedData;
+app.controller('editController', ['$scope','productsFactory', '$routeParams', function($scope, productsFactory, $routeParams) {
+   productsFactory.show($routeParams.id, function(returnedData){
+     $scope.product = returnedData;
    });
    $scope.update = function(){
-     friendsFactory.update($scope.friend, function(data){
-       $scope.friend = data
+     productsFactory.update($scope.product, function(data){
+       $scope.product = data
      })
     //
      }

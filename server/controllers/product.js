@@ -41,13 +41,13 @@ module.exports = {
         }
         else{
           console.log('you updated');
-          Product.findOne({_id: request.params.id}, function(err, friend) {
+          Product.findOne({_id: request.params.id}, function(err, product) {
             if (err){
               console.log('the show had an error');
               response.json(err);
             }
             else{
-              response.json(friend)
+              response.json(product)
             }
       })  }
     })
@@ -66,13 +66,13 @@ module.exports = {
     })
   },
   show: function(request,response){
-    Product.findOne({_id: request.params.id}, function(err, friend) {
+    Product.findOne({_id: request.params.id}, function(err, product) {
       if (err){
         console.log('the show had an error');
         response.json(err);
       }
       else{
-        response.json(friend)
+        response.json(product)
       }
 })  }
 }

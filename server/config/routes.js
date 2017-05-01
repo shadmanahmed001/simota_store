@@ -9,6 +9,14 @@ app.get('/products', function(request, response) {
 app.get('/edit/:id', function(request, response) {
   products.show(request, response);
 });
+
+// this is where the stripe get method is going to go
+// need to send it to json so angualr has the info
+
+
+// then add the charge method using the code there
+
+
 app.post('/products', function(request, response) {
   products.create(request, response);
 });
