@@ -1,0 +1,38 @@
+
+<div ng-controller = "newController">
+<form ng-submit = "create()">
+  <h5></h5>
+  Product Name: <input type="text" ng-model = "newProduct.name" >
+  Product Description: <input type="text" ng-model = "newProduct.description" >
+  Product Image: <input type="text" ng-model = "newProduct.image" >
+  Product Price: <input type="text" ng-model = "newProduct.price" >
+  Others Price: <input type="text" ng-model = "newProduct.others_price" >
+  <input type="submit" value="Submit" >
+</form>
+
+
+<table ng-if = "products">
+   <tr>
+     <th>Product Name</th>
+     <th>Product Description</th>
+     <th>Product Image</th>
+     <th>Product Price</th>
+     <th>Others Price</th>
+
+     <th>Edit</th>
+     <th>Delete</th>
+
+   </tr>
+   <tr ng-repeat = 'product in products track by $index'>
+     <td> <span ng-bind="product.name"></span> </td>
+     <td> <span ng-bind="product.description"></span> </td>
+     <td> <span ng-bind="product.image"></span> </td>
+     <td> <span ng-bind="product.price"></span> </td>
+     <td> <span ng-bind="product.others_price"></span> </td>
+
+ <td><a href="#!/edit/{{product._id}}">Edit</a></td>
+ <td><button ng-click = 'delete(product)'>Delete</button></td>
+
+   </tr>
+ </table>
+</div>
