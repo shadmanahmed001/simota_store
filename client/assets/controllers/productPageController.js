@@ -1,6 +1,6 @@
 
-app.controller('newController', ['$scope','productsFactory','$routeParams', function($scope, productsFactory, $routeParams) {
-console.log("this controller is started");
+app.controller('productPageController', ['$scope','productsFactory','$routeParams', function($scope, productsFactory, $routeParams) {
+console.log("this product controller is started");
       productsFactory.index(function(data) {
       $scope.products = data;
       })
@@ -19,10 +19,5 @@ console.log("this controller is started");
       });
     });
   }
-  // $scope.show = function(product){
-  //   productsFactory.show(product, function(data){
-  //     console.log(data);
-  //     $scope.data = data;
-  //   })
-  // }
+
 }]);

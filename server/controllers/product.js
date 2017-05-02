@@ -13,9 +13,14 @@ module.exports = {
     })},
   create: function(request,response){
     console.log('got to the create function in server', request.body);
-    var newproduct = new Product(request.body);
-    console.log(newproduct);
-    newproduct.save(function(err){
+    var newProduct = new Product();
+    newProduct.name = request.body.name;
+    newProduct.description = request.body.description
+    newProduct.image = request.body.image
+    newProduct.price = request.body.price
+    newProduct.others_price = request.body.others_price
+    console.log("the product made is", newProduct);
+    newProduct.save(function(err){
       if (err){
         console.log('error in creation');
         response.json(err);
@@ -28,7 +33,7 @@ module.exports = {
           }
           else{
             console.log('your sending all the products json');
-            response.json(data);
+            response.redirect('smiotastore/admin/addproduct');
           }
         })
       }

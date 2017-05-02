@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html ng-app = "app">
   <head>
     <meta charset="utf-8">
-    <title>Hello and Welcome to the Add Product Page</title>
+    <title>Admin Add Product Page</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
   </head>
   <body>
+      <div>
+
+    <form method="POST" action="/products">
+      <fieldset>
+        <h5>Enter Products to place into the Database</h5>
+      Product Name: <input type="text" name = "name" >
+      Product Description: <input type="text" name = "description" >
+      Product Image: <input type="text" name = "image" >
+      Product Price: <input type="price" name = "price" >
+      Others Price: <input type="text" name = "others_price" >
+      <input type="submit" value="Submit" >
+      </fieldset>
+    </form>
+
+    <h4>These are all the available products in the DB</h4>
+  <script>
+    $(document).ready(function(){
+      $.get("/products", function(response) {
+      console.log(response);
+      for (var i = 0; i <= response.length-1; i++){
+        console.log(response[i]);
+        if (!table){
+          var table = "";
+        }
+
+        table += "<td>" + response[i].name + "<td>"
+        table += "<td>" + response[i].description + "<td>"
+        table += "<td><img src=" + response[i].image + "><td>"
+        table += "<td>" + response[i].price + "<td>"
+        table += "<td>" + response[i].others_price + "<td>"
+        table += "<td>" + response[i].createdAt + "<td><br>"
+        // table += "<td>" + "<a href=/edit/ + response[i]._id" + "">Edit</a> + "</td>"
+        // table += "<td><button ng-click = 'delete(product)'>Delete</button></td>"
+        // console.log(table);
+        $("#showProducts").html(table);
+      }
+      }, "json");
+
+
+
+    })
+  </script>
+
+
+    <table>
+       <tr>
+         <th>Product Name</th>
+         <th>Product Description</th>
+         <th>Product Image</th>
+         <th>Product Price</th>
+         <th>Others Price</th>
+         <th>Edit</th>
+         <th>Delete</th>
+       </tr>
+
+       <tr>
+         <!-- i need a for loop here -->
+          <td id="showProducts"></td>
+
+      </tr>
+
+     </table>
+    </div>
 
   </body>
 </html>

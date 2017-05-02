@@ -11,15 +11,12 @@ var multer = require('multer');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('client'));
+app.use(express.static(__dirname + '/views'));
 
 app.set('views', path.join(__dirname, './views'));
 
-app.set("view engine", "pug", "html");
+app.set("view engine", "pug");
 // app.set("view engine", "html")
-
-
-
-
 
 // ************
 app.use(express.static('bower_components'))
@@ -37,5 +34,5 @@ routes_setter(app);
 
 
 app.listen(8000, function() {
- console.log("Simota Store is listening on port 8000");
+ console.log("Smiota Store is listening on port 8000");
 });
