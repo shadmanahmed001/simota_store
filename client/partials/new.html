@@ -27,26 +27,9 @@
    <tr ng-repeat = 'product in products track by $index'>
      <td> <span ng-bind="product.name"></span> </td>
      <td> <span ng-bind="product.description"></span> </td>
-     <!-- <td> <span ng-bind="product.image"></span> </td> -->
-     <td><img src="{{product.image}}" class="auto-img border" style="width: 100%; height: 100%;"></td>
+     <td><img src="{{product.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
      <td> <span ng-bind="product.price"></span> </td>
      <td> <span ng-bind="product.others_price"></span> </td>
-
-    <!-- ************testing out stripe ********* -->
-     <form action="/your-server-side-code" method="POST">
-     <script
-       src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-       data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-       data-amount="2000"
-       data-name="Stripe.com"
-       data-description="2 widgets"
-       data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-       data-locale="auto"
-       data-zip-code="true">
-     </script>
-     </form>
-
-
  <td><a href="#!/edit/{{product._id}}">Edit</a></td>
  <td><button ng-click = 'delete(product)'>Delete</button></td>
 

@@ -9,5 +9,5 @@ var ProductSchema = new mongoose.Schema({
   price: Number,
   others_price: Number,
 
-})
+}, {timestamps: true});
 var Product = mongoose.model('Product', ProductSchema);
