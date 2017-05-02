@@ -4,7 +4,7 @@ app.factory('productsFactory', ['$http', function($http) {
   factory.index = function(callback) {
       //call this method if you want to update or set the products variable
       $http.get('/products').then(function(returned_data){
-        console.log(returned_data.data);
+        console.log("this is from the get method", returned_data.data);
         callback(returned_data.data);
       });
   }

@@ -28,8 +28,8 @@
      <td> <span ng-bind="product.name"></span> </td>
      <td> <span ng-bind="product.description"></span> </td>
      <td><img src="{{product.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
-     <td> <span ng-bind="product.price"></span> </td>
-     <td> <span ng-bind="product.others_price"></span> </td>
+     <td> $<span ng-bind="product.price"></span> </td>
+     <td> $<span ng-bind="product.others_price"></span> </td>
  <td><a href="#!/edit/{{product._id}}">Edit</a></td>
  <td><button ng-click = 'delete(product)'>Delete</button></td>
 
