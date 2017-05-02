@@ -14,7 +14,8 @@ app.use(express.static('client'));
 
 app.set('views', path.join(__dirname, './views'));
 
-app.set("view engine", "pug");
+app.set("view engine", "pug", "html");
+// app.set("view engine", "html")
 
 
 

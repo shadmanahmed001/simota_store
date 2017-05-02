@@ -15,6 +15,11 @@ app.get('/edit/:id', function(request, response) {
   products.show(request, response);
 });
 
+// this is going to be the route for the admin add product page
+
+app.get('/smiotastore/admin/addproduct', function(request, response){
+response.sendFile(path.join(__dirname+'...views/addProductPage.html'))
+});
 // this is where the stripe get method is going to go
 // need to send it to json so angualr has the info
 app.get("/checkout", function(request, response){
