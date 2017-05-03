@@ -4,7 +4,120 @@
     <meta charset="utf-8">
     <title>Admin Add Product Page</title>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+
+
+
+    <!--
+    // app.config(function () {
+      // $routeProvider
+      //   .when('/edit/:id',{
+      //     templateUrl: 'partials/edit.html',
+      //     controller : 'editController'
+      //   })
+      //   .when('/new', {
+      //     templateUrl: 'partials/new.html',
+      //     controller : 'newController'
+      //   })
+      //   .otherwise({
+      //     redirectTo: '/'
+    // }
+  // ); -->
+  <script>
+  var app = angular.module('app', ['ngRoute']);
+  app.config(function ($routeProvider) {
+    $routeProvider
+      .when('/edit/:id',{
+        templateUrl: 'admin/partials/editProduct.html',
+        controller : 'adminController'
+      })
+      .otherwise({
+        redirectTo: '/'
+      })
+  });
+
+    // <!-- FACTORY******************************** -->
+
+    app.factory('adminFactory', ['$http', function($http){
+      var factory ={};
+      factory.index = function(callback){
+        $http.get('/products').then(function(returned_data){
+          console.log("logging from admin controller", returned_data.data);
+          callback(returned_data.data);
+        });
+
+      factory.delete = function(product, callback) {
+        $http.delete('/products/'+product._id).then(function(response) {
+                console.log(response.data);
+                if (typeof callback === 'function') {
+                  callback(response.data);
+                }
+              })
+        };
+
+        factory.update = function(product, callback) {
+          $http.put('/products/'+ product._id, product).then(function(returned_data) {
+              console.log(returned_data.data);
+              if (typeof(callback) == 'function'){
+                callback(returned_data.data);
+              }
+          })
+        };
+
+        factory.create = function(newProduct, callback) {
+            $http.post('/products', newProduct).then(function(returned_data){
+              console.log('this is the retun',  returned_data.data);
+              if (typeof(callback) == 'function'){
+                callback(returned_data.data);
+              }
+            });
+        }
+
+
+      }
+
+      return factory;
+    }])
+    // <!-- CONTROLLER***************************** -->
+
+    app.controller('adminController', ['$scope', 'adminFactory','$routeParams', function($scope, adminFactory, $routeParams){
+      adminFactory.index(function(data) {
+      $scope.products = data;
+    });
+
+    $scope.delete = function(product){
+      adminFactory.delete(product, function(data){
+        adminFactory.index(function(data){
+          $scope.products = data;
+        });
+      });
+    };
+
+    $scope.update = function(){
+      adminFactory.update($scope.product, function(data){
+        $scope.product = data
+      })
+    };
+
+    $scope.create = function() {
+        adminFactory.create($scope.newProduct, function(data) {
+            adminFactory.index(function(data) {
+                $scope.products = data;
+                $scope.newProduct = {};
+            })
+        });
+    }
+
+    }])
+
+
+
+  </script>
+<!-- END ****************************************** -->
+
   </head>
+
   <body>
       <div>
 
@@ -16,45 +129,51 @@
       Product Image: <input type="text" name = "image" >
       Product Price: <input type="price" name = "price" >
       Others Price: <input type="text" name = "others_price" >
+      Quantity: <input type="number" name = "quantity" min="0" max="200" >
       <input type="submit" value="Submit" >
       </fieldset>
     </form>
+  </div>
 
     <h4>These are all the available products in the DB</h4>
   <script>
-    $(document).ready(function(){
-      $.get("/products", function(response) {
-      console.log(response);
-      for (var i = 0; i <= response.length-1; i++){
-        console.log(response[i]);
-        if (!table){
-          var table = "";
-        }
+    // $(document).ready(function(){
+    //   $.get("/products", function(response) {
+    //   for (var i = 0; i <= response.length-1; i++){
+    //     if (!table){
+    //       var table = "";
+    //     }
+    //     table += "<td>" + response[i].name + "<td>"
+    //     table += "<td>" + response[i].description + "<td>"
+    //     table += "<td><img src=" + response[i].image + "><td>"
+    //     table += "<td>" + response[i].price + "<td>"
+    //     table += "<td>" + response[i].others_price + "<td>"
+    //     table += "<td>" + response[i].createdAt + "<td><br>"
 
-        table += "<td>" + response[i].name + "<td>"
-        table += "<td>" + response[i].description + "<td>"
-        table += "<td><img src=" + response[i].image + "><td>"
-        table += "<td>" + response[i].price + "<td>"
-        table += "<td>" + response[i].others_price + "<td>"
-        table += "<td>" + response[i].createdAt + "<td><br>"
         // table += "<td>" + "<a href=/edit/ + response[i]._id" + "">Edit</a> + "</td>"
         // table += "<td><button ng-click = 'delete(product)'>Delete</button></td>"
         // console.log(table);
-        $("#showProducts").html(table);
-      }
-      }, "json");
 
+      //   $("#showProducts").html(table);
+      // }
+      // }, "json");
 
-
-    })
+// for the quantity drop down
+    //   var select = '';
+    //   for (i=1;i<=100;i++){
+    //   select += '<option val=' + i + '>' + i + '</option>';
+    //   }
+    //   $('#some_selector').html(select);
+    //
+    // })
   </script>
 
-
+<!--
     <table>
        <tr>
          <th>Product Name</th>
-         <th>Product Description</th>
-         <th>Product Image</th>
+         <th>Product Description</th> -->
+         <!-- <th>Product Image</th>
          <th>Product Price</th>
          <th>Others Price</th>
          <th>Edit</th>
@@ -62,13 +181,37 @@
        </tr>
 
        <tr>
-         <!-- i need a for loop here -->
-          <td id="showProducts"></td>
 
       </tr>
 
      </table>
-    </div>
+    </div> -->
+    <div ng-controller='adminController'>
+    <table ng-if = "products">
+       <tr>
+         <th>Product</th>
+         <th>Description</th>
+         <th>Image</th>
+         <th>Our Price</th>
+         <th>Others Price</th>
+         <th>Quantity</th>
+         <!-- <th>Edit</th> -->
+         <th>Delete</th>
+       </tr>
+       <tr ng-repeat = 'product in products track by $index'>
+         <td> <span ng-bind="product.name"></span> </td>
+         <td> <span ng-bind="product.description"></span> </td>
+         <td><img src="{{product.image}}" alt="Product Image"class="auto-img border" style="width: 25%; height: 25%;"></td>
+         <td> $<span ng-bind="product.price"></span> </td>
+         <td> $<span ng-bind="product.others_price"></span> </td>
+     <!-- <td><a href="#!/edit/{{product._id}}">Edit</a></td> -->
+     <td> <span ng-bind="product.quantity"></span> in stock </td>
+     <td><button ng-click = 'delete(product)'>Delete</button></td>
 
+       </tr>
+     </table>
+   </div>
+
+   Check the consumer side. <a href="/">Home</a>
   </body>
 </html>

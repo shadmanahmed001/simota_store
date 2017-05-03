@@ -10,10 +10,6 @@ app.config(function ($routeProvider) {
       templateUrl: 'partials/new.html',
       controller : 'newController'
     })
-    .when('/smiotastore/admin/addproduct', {
-      // templateUrl: 'partials/new.html',
-      controller : 'productPageController'
-    })
     .otherwise({
       redirectTo: '/'
     })

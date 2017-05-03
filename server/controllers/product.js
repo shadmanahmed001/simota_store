@@ -19,6 +19,9 @@ module.exports = {
     newProduct.image = request.body.image
     newProduct.price = request.body.price
     newProduct.others_price = request.body.others_price
+    if(request.body.quantity){
+      newProduct.quantity = request.body.quantity
+    }
     console.log("the product made is", newProduct);
     newProduct.save(function(err){
       if (err){

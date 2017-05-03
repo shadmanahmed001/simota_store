@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var products = require('../controllers/product')
 var path = require('path')
-
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
 

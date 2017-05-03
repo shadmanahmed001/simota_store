@@ -7,7 +7,6 @@ app.controller('editController', ['$scope','productsFactory', '$routeParams', fu
      productsFactory.update($scope.product, function(data){
        $scope.product = data
      })
-    //
      }
 
   //  $scope.update(/*What goes here?*/)

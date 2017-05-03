@@ -8,6 +8,7 @@ var ProductSchema = new mongoose.Schema({
   image: String,
   price: Number,
   others_price: Number,
+  quantity: { type: Number, default: 0 }
 
 }, {timestamps: true});
 var Product = mongoose.model('Product', ProductSchema);
