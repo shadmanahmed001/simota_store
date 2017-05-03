@@ -6,8 +6,8 @@ app.config(function ($routeProvider) {
       templateUrl: 'partials/edit.html',
       controller : 'editController'
     })
-    .when('/new', {
-      templateUrl: 'partials/new.html',
+    .when('/all', {
+      templateUrl: 'partials/all.html',
       controller : 'newController'
     })
     .otherwise({

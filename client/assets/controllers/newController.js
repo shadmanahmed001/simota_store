@@ -1,6 +1,5 @@
 
 app.controller('newController', ['$scope','productsFactory','$routeParams', function($scope, productsFactory, $routeParams) {
-console.log("this controller is started");
       productsFactory.index(function(data) {
       $scope.products = data;
       })
