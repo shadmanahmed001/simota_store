@@ -9,6 +9,51 @@
     <script src="assets/factories/productsFactory.js" charset="utf-8"></script>
     <script src="assets/controllers/editController.js" charset="utf-8"></script>
     <script src="assets/controllers/newController.js" charset="utf-8"></script>
+    <!-- google sign in -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+    <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    };
+    var onFailure = function(error) {
+      console.log(error);
+    };
+
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    };
+
+    function renderButton() {
+  gapi.signin2.render('my-signin2', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSuccess,
+    'onfailure': onFailure
+  });
+}
+// sign out of google
+function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+  });
+}
+  </script>
+
+  <!-- linkedin sign in -->
+  <script type="in/Login"></script>
+
+
     <!-- google-analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -18,14 +63,15 @@
 
       ga('create', 'UA-98425286-1', 'auto');
       ga('send', 'pageview');
-
     </script>
   </head>
   <body>
     <h2>Smiota Store!</h2>
     <a href="#!/new">Add new Product</a>
     <a href="/">Home</a>
-    <a href="#!/new">Home</a>
+    <a href="#" onclick="signOut();">Sign out of Google</a>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 
 
