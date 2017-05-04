@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var products = require('../controllers/product')
+var users = require('../controllers/user')
+
 var path = require('path')
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
@@ -44,6 +46,11 @@ app.post("/charge", function(request, response){
   .then(charge => response.render("charge.pug"));
 });
 
+app.post('/user', function(request, response) {
+  console.log("ji");
+  console.log(response["signedInUser"]);
+  users.verifyUser(request, response);
+});
 
 app.post('/products', function(request, response) {
   products.create(request, response);

@@ -1,0 +1,51 @@
+
+
+<div ng-controller = "newController">
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<!-- <form ng-submit = "create()">
+  <h5></h5>
+  Product Name: <input type="text" ng-model = "newProduct.name" >
+  Product Description: <input type="text" ng-model = "newProduct.description" >
+  Product Image: <input type="text" ng-model = "newProduct.image" >
+  Product Price: <input type="price" ng-model = "newProduct.price" >
+  Others Price: <input type="text" ng-model = "newProduct.others_price" >
+  <input type="submit" value="Submit" >
+</form> -->
+
+<h3>All our products</h3>
+<table ng-if = "products">
+  <h2>You can search also</h2><label>Search: <input type="text" id="searchfield" ng-model="filter_name"></label> <button type="button" id="clearButton">Clear Search</button>
+  <script>
+  $(document).ready(function(){
+  $('#clearButton').click(function(){
+    console.log("this worked");
+    // $('#searchfield').val('')
+  })
+})
+  </script>
+   <tr>
+     <th>Product Name</th>
+     <th>Product Description</th>
+     <th>Product Image</th>
+     <th>Product Price</th>
+     <th>Others Price</th>
+
+     <!-- <th>Edit</th>
+     <th>Delete</th> -->
+   </tr>
+   <tr ng-repeat = "product in products | filter: filter_name">
+     <td> <span ng-bind="product.name"></span> </td>
+     <td> <span ng-bind="product.description"></span> </td>
+     <td><img src="{{product.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
+     <td> $<span ng-bind="product.price"></span> </td>
+     <td> $<span ng-bind="product.others_price"></span> </td>
+ <!-- <td><a href="#!/edit/{{product._id}}">Edit</a></td> -->
+ <!-- <td><button ng-click = 'delete(product)'>Delete</button></td> -->
+
+   </tr>
+ </table>
+</div>

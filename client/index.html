@@ -1,80 +1,155 @@
 <!DOCTYPE html>
 <html ng-app = "app">
   <head>
-    <meta charset="utf-8">
     <title>Smiota Store</title>
+    <meta charset="utf-8">
+
+    <!-- Responsive Page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Google Sign In Button -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <meta name="google-signin-client_id" content="689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com">
+
+    <!-- Google Icon Font -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Angular Stuff -->
     <script src="angular/angular.js" charset="utf-8"></script>
     <script src="angular-route/angular-route.js" charset="utf-8"></script>
+    <script src='angular-cookies/angular-cookies.js' charset='utf-8' ></script>
+    <!-- <script src='angular-messages/angular-messages.js' charset='utf-8' ></script> -->
+
+    <!-- Master App -->
     <script src="assets/app.js" charset="utf-8"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Factories -->
     <script src="assets/factories/productsFactory.js" charset="utf-8"></script>
+    <script src="assets/factories/userFactory.js" charset="utf-8"></script>
+
+    <!-- Controllers -->
     <script src="assets/controllers/editController.js" charset="utf-8"></script>
     <script src="assets/controllers/newController.js" charset="utf-8"></script>
-    <!-- google sign in -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="assets/controllers/loginController.js" charset="utf-8"></script>
 
-    <script>
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    };
-    var onFailure = function(error) {
-      console.log(error);
-    };
+    <!-- jQuery and Materialize -->
+    <script src='jquery/dist/jquery.js' charset='utf-8' ></script>
+    <script src='materialize/dist/js/materialize.min.js' charset='`utf-8' ></script>
+    <link rel="stylesheet" type="text/css" href="materialize/dist/css/materialize.min.css">
 
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    };
-
-  //   function renderButton() {
-  // gapi.signin2.render('my-signin2', {
-  //   'scope': 'profile email',
-  //   'width': 240,
-  //   'height': 50,
-  //   'longtitle': true,
-  //   'theme': 'dark',
-  //   'onsuccess': onSuccess,
-  //   'onfailure': onFailure
-  // });
-// }
-// sign out of google
-function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-  });
-}
-  </script>
-
-  <!-- linkedin sign in -->
-  <script type="in/Login"></script>
-
-
-    <!-- google-analytics -->
+    <!-- Google Analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
       ga('create', 'UA-98425286-1', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <script type="text/javascript">
+      $('select').material_select();
+    </script>
+
+    <!-- linkedin sign in -->
+    <script type="in/Login"></script>
+
+
+    <!-- Google Sign In Functions -->
+    <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log(id_token);
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token, true);
+     xhr.send('idtoken=' + xhr.responseText);
+     xhr.addEventListener("readystatechange", processRequest, false)
+     function processRequest (){
+       if(xhr.readyState == 4 && xhr.status == 200){
+         var response = JSON.parse(xhr.responseText)
+
+         var email = response["email"];
+         var first_name = response["given_name"];
+         var last_name = response["family_name"];
+         var picture_link = response["picture"];
+         var auth_id = response["sub"];
+
+     var signedInUser = {"email" : email, "first_name": first_name, "last_name": last_name, "picture_link": picture_link, "auth_id": auth_id}
+
+     console.log(signedInUser);
+
+     var sendUser = new XMLHttpRequest();
+     sendUser.open('POST', '/user', true);
+     sendUser.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+     sendUser.onreadystatechange = function() {
+       if(sendUser.readyState == 4 && sendUser.status == 200){
+       }
+     }
+    //  sendUser.send(signedInUser)
+
+     $(document).ready(function (){
+       $.ajax({
+         type: "POST",
+         url: "/user",
+         data: signedInUser,
+         success: function(){},
+         dataType: "json",
+         contentType : "application/json"
+       })
+     }
+
+     )
+
+     // this close the process requests if
+       }
+     }
+    };
+    var onFailure = function(error) {
+      console.log(error);
+    };
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    };
+    function renderButton() {
+    gapi.signin2.render('my-signin2', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSuccess,
+    'onfailure': onFailure
+  });
+}
+// sign out of google
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+  </script>
+
   </head>
   <body>
     <h2>Smiota Store!</h2>
-    <a href="#!/all">See all our products</a>
+
+    <!-- <a href="#!/all">See all our products</a>
     <a href="#!/cart">My Cart</a>
-    <a href="/">Home</a>
+    <a href="/">Home</a> -->
     <a href="#" onclick="signOut();">Sign out of Google</a>
 
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-
 
     <div ng-view = "">
     </div>
