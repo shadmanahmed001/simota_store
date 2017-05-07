@@ -28,27 +28,29 @@ gapi.signin2.render('my-signin2', {
   'onfailure': onFailure
 });
 }
-  // Sign Out of Google
+</script> -->
+  <!-- Sign Out of Google -->
+  <script>
   function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('User signed out.');
   });
   }
-
-</script> -->
+  </script>
 
 
   <div class="container">
     <br><br>
-    <h1>Smiota Store</h1>
+    <h1>Login</h1>
     <div class="row center">
       <h5 class="header col s12 light">Get your groceries here!</h5>
     </div>
     <div class="row center">
-      <h5 class="header col s12 light">Login above to continue</h5>
+      <h5 class="header col s12 light">Login below to continue</h5>
     </div>
     <br><br>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
     <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
