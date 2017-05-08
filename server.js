@@ -4,7 +4,10 @@ var path = require("path");
 var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
-
+var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
+var social = require('./server/config/passport')(app, passport)
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
 // const keySecret = process.env.SECRET_KEY;
 // const stripe = require("stripe")(keySecret);
@@ -12,6 +15,13 @@ var multer = require('multer');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('client'));
 app.use(express.static(__dirname + '/views'));
+app.use(session({secret: 'password',
+                  saveUninitialized: true,
+                resave: true}));
+
+app.use(passport.initialize())
+app.use(passport.session());
+app.use(flash());
 
 app.set('views', path.join(__dirname, './views'));
 
@@ -30,7 +40,8 @@ app.use(bodyParser.json())
 
 require(path.join(__dirname,'./server/config/mongoose.js'));
 var routes_setter = require(path.join(__dirname,'./server/config/routes.js'));
-routes_setter(app);
+require('./server/config/passport')
+routes_setter(app, passport);
 
 
 app.listen(8000, function() {

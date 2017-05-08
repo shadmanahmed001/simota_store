@@ -7,55 +7,66 @@ var auth = new GoogleAuth;
 var client = new auth.OAuth2("689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com", '', '');
 
 module.exports = {
-  // index: function(request,response){
-  //   Product.find({}, function(err, data){
-  //     if (err){
-  //       console.log('there was a problem here');
-  //     }
-  //     else{
-  //       response.json(data)
-  //     }
-  //   })},
+  // Making Admin and Manager account
+    function () {
+    User.findOne({email:"a@admin.com"}, function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+      if (!user) {
+        console.log("Admin Not Found! Creating one at email: a@admin.com pass: asdf");
+        var newAdmin = new User({
+          first_name: 'admin',
+          last_name: 'admin',
+          email: 'a@admin.com',
+          phone_number: '5106009412',
+          password: 'asdf',
+          admin: 0
+        });
+        newAdmin.save(function (err, user) {
+          if (err) {
+            console.log("Email already Registered");
+            error_messages.push("Email Already Registered! Please Login.");
+            res.json({success: false, error_messages: error_messages});
+            console.log(err);
+            throw err;
+          }
+        });
+      } else {
+        console.log("Admin Available @ email: a@admin.com pass: asdf");
+      }
+    });
 
-  verifyUser: function(request,response){
-  //   console.log(response["xhr"]);
-  //   console.log("got here");
-  //   client.verifyIdToken(
-  //     "token",
-  //     "689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com",
-  //     function (e, login) {
-  //       var payload = login.getPayload();
-  //       var userid = payload['sub'];
-      // }
-  //   )
-    // trying to post to google api to verifyIdToken
-    // An object of options to indicate where to post to
-    console.log(response.id_token);
-  // var post_options = {
-  //     host: 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + ,
-  //     port: '80',
-  //     path: '/compile',
-  //     method: 'POST',
-  //     headers: {
-  //         'Content-Type': 'application/x-www-form-urlencoded',
-  //         'Content-Length': Buffer.byteLength(post_data)
-  //     }
-  // };
-
-  // Set up the request
-  // var post_req = http.request(post_options, function(res) {
-  //     res.setEncoding('utf8');
-  //     res.on('data', function (chunk) {
-  //         console.log('Response: ' + chunk);
-  //     });
-  // });
-
-  // post the data
-  // post_req.write(post_data);
-  // post_req.end();
-
-
+    User.findOne({email:"a@manager.com"}, function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+      if (!user) {
+        console.log("Manager Not Found! Creating one at email: aa@manager.com pass: asdf");
+        var newAdmin = new User({
+          first_name: 'admin',
+          last_name: 'admin',
+          email: 'aa@admin.com',
+          phone_number: '5106009412',
+          password: 'asdf',
+          admin: 1
+        });
+        newAdmin.save(function (err, user) {
+          if (err) {
+            console.log("Email already Registered");
+            error_messages.push("Email Already Registered! Please Login.");
+            res.json({success: false, error_messages: error_messages});
+            console.log(err);
+            throw err;
+          }
+        });
+      } else {
+        console.log("Manager Available @ email: aa@manager.com pass: asdf");
+      }
+    });
   },
+
+  // End of creating Admin and Manager
 
 
   create: function(request,response){

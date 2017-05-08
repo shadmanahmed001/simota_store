@@ -5,32 +5,10 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
   $scope.existingUser = {};
   $scope.error_messages = [];
 
-  // Google Sign In Functions
-  var onFailure = function(error) {
-    console.log(error);
-  };
-  // function onSuccess(googleUser) {
-  //   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-  // };
-//   function renderButton() {
-//   gapi.signin2.render('my-signin2', {
-//   'scope': 'profile email',
-//   'width': 240,
-//   'height': 50,
-//   'longtitle': true,
-//   'theme': 'dark',
-//   'onsuccess': onSuccess,
-//   'onfailure': onFailure
-// });
-// }
-function onSignIn(googleUser) {
-  $scope.profile = googleUser.getBasicProfile();
-  console.log("in this funciton");
-  console.log('ID: ' + profile.getId());
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-};
+  $scope.signupUser = function() {
+    console.log("signupUser");
+  }
+
 // Sign Out Of Google
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -53,6 +31,9 @@ function onSignIn(googleUser) {
   //   }
   // };
   // CheckingUser();
+
+
+
 
   // -------------------------------------------------------------------------
   //                            Login User

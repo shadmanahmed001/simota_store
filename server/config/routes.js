@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var products = require('../controllers/product')
 var users = require('../controllers/user')
+// var passport = require('./passport')
+var passport = require('passport');
+var jwt = require('jsonwebtoken');
+var secret = 'shadman';
+
 
 var path = require('path')
 const keyPublishable = process.env.PUBLISHABLE_KEY;
@@ -9,6 +14,7 @@ const keySecret = process.env.SECRET_KEY;
 const stripe = require("stripe")(keySecret);
 
 module.exports = function(app){
+
 app.get('/products', function(request, response) {
   products.index(request, response);
 });
@@ -52,6 +58,29 @@ app.post('/user', function(request, response) {
   users.verifyUser(request, response);
 });
 
+// Passport JS
+// app.post('/signup', passport.authenticate('local-signup', {
+//
+//   successRedirect: '/mainpage',
+//   failureRedirect: '/login',
+//   failureFlash: true
+// }));
+
+app.get('/logout', function(request, response){
+  request.logout();
+  response.redirect('/')
+})
+// Facebook
+// app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
+//
+//
+// app.get('/auth/facebook/callback',
+//   passport.authenticate('facebook', {
+//     successRedirect: '/mainpage',
+//     failureRedirect: '/'
+//   }));
+
+// End of Facebook
 app.post('/products', function(request, response) {
   products.create(request, response);
 });
@@ -61,4 +90,48 @@ app.put('/products/:id', function(request, response) {
 app.delete('/products/:id', function(request, response) {
   products.delete(request, response);
 });
+
+
+//This is the redirect to set token page
+app.get('/mainpage/:id', function(request, response) {
+  response.redirect('/#!/mainpage/' + request.params.id)
+})
+
+// This is to verify the token and send the email and name
+app.use(function(request, response, next) {
+
+  var token = request.body.token || request.body.query || request.headers['x-access-token'];
+
+  if (token){
+    // verify token
+    jwt.verify(token, secret, function(err, decoded) {
+      if (err){
+        response.json({success: false, message: 'Token Invalid'});
+      } else {
+        request.decoded = decoded;
+        next();
+      }
+    });
+  } else {
+    response.json({success: false, message: 'No token provided'});
+  }
+});
+
+app.post('/verifytoken', function(request, response){
+  console.log('inside the server verifytoken func');
+  response.send(request.decoded);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -7,6 +7,14 @@ app.config(function ($routeProvider) {
     templateUrl: 'partials/login.html',
     controller : 'loginController'
   })
+  .when('/mainpage/:token',{
+    templateUrl: 'partials/mainpage.html',
+    controller : 'tokenController'
+  })
+  .when('/adminlogin',{
+    templateUrl: 'partials/adminlogin.html',
+    // controller : 'loginController'
+  })
     .when('/edit/:id',{
       templateUrl: 'partials/edit.html',
       controller : 'editController'
@@ -18,4 +26,8 @@ app.config(function ($routeProvider) {
     .otherwise({
       redirectTo: '/'
     })
+});
+
+app.config(function($httpProvider) {
+  $httpProvider.interceptors.push('authInterceptorsFactory');
 });

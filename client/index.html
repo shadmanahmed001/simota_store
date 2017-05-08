@@ -30,11 +30,16 @@
     <!-- Factories -->
     <script src="assets/factories/productsFactory.js" charset="utf-8"></script>
     <script src="assets/factories/userFactory.js" charset="utf-8"></script>
+    <script src="assets/factories/mainFactory.js" charset="utf-8"></script>
+    <script src="assets/factories/authInterceptorsFactory.js" charset="utf-8"></script>
+
 
     <!-- Controllers -->
     <script src="assets/controllers/editController.js" charset="utf-8"></script>
     <script src="assets/controllers/newController.js" charset="utf-8"></script>
     <script src="assets/controllers/loginController.js" charset="utf-8"></script>
+    <script src="assets/controllers/mainController.js" charset="utf-8"></script>
+    <script src="assets/controllers/tokenController.js" charset="utf-8"></script>
 
     <!-- jQuery and Materialize -->
     <script src='jquery/dist/jquery.js' charset='utf-8' ></script>
@@ -58,110 +63,19 @@
     <!-- linkedin sign in -->
     <script type="in/Login"></script>
 
-<!-- <script type="text/javascript">
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log("in this funciton");
-  console.log('ID: ' + profile.getId());
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-};
-</script> -->
-    <!-- Google Sign In Functions -->
-    <!-- <script>
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId());
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
-      var id_token = googleUser.getAuthResponse().id_token;
-      console.log(id_token);
-      var xhr = new XMLHttpRequest();
-
-      xhr.open('GET', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token, true);
-     xhr.send('idtoken=' + xhr.responseText);
-     xhr.addEventListener("readystatechange", processRequest, false)
-     function processRequest (){
-       if(xhr.readyState == 4 && xhr.status == 200){
-         var response = JSON.parse(xhr.responseText)
-
-         var email = response["email"];
-         var first_name = response["given_name"];
-         var last_name = response["family_name"];
-         var picture_link = response["picture"];
-         var auth_id = response["sub"];
-
-     var signedInUser = {"email" : email, "first_name": first_name, "last_name": last_name, "picture_link": picture_link, "auth_id": auth_id}
-
-     console.log(signedInUser);
-
-     var sendUser = new XMLHttpRequest();
-     sendUser.open('POST', '/user', true);
-     sendUser.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     sendUser.onreadystatechange = function() {
-       if(sendUser.readyState == 4 && sendUser.status == 200){
-       }
-     } -->
-    <!-- //  sendUser.send(signedInUser)
-
-     $(document).ready(function (){
-       $.ajax({
-         type: "POST",
-         url: "/user",
-         data: signedInUser,
-         success: function(){},
-         dataType: "json",
-         contentType : "application/json"
-       })
-     } -->
-
-     <!-- )
-
-     // this close the process requests if
-       }
-     }
-    };
-    var onFailure = function(error) {
-      console.log(error);
-    };
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    };
-    function renderButton() {
-    gapi.signin2.render('my-signin2', {
-    'scope': 'profile email', -->
-    <!-- 'width': 240,
-    'height': 50,
-    'longtitle': true,
-    'theme': 'dark',
-    'onsuccess': onSuccess,
-    'onfailure': onFailure
-  });
-}
-// sign out of google
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-    }
-  </script> -->
-
   </head>
-  <body>
+  <body ng-controller="mainController">
     <h2>Smiota Store!</h2>
 
     <!-- <a href="#!/all">See all our products</a>
     <a href="#!/cart">My Cart</a>
     <a href="/">Home</a> -->
-    <a href="#" onclick="signOut();">Sign out of Google</a>
 
     <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 
     <div ng-view = "">
     </div>
+    <button type="button" name="button" ng-click="logout();">Logout</button>
 
   </body>
 </html>
