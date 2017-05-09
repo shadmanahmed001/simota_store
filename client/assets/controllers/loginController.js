@@ -5,6 +5,19 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
   $scope.existingUser = {};
   $scope.error_messages = [];
 
+
+  var CheckingUser = function () {
+  if (!$cookieStore.get('email')) {
+    console.log("Not Logged In");
+    $location.path('/');
+  } else {
+    console.log("logged in");
+    $location.path('/all');
+
+  }
+};
+CheckingUser();
+
   $scope.signupUser = function() {
     console.log("signupUser");
   }

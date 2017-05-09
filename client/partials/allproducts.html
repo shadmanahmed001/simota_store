@@ -1,6 +1,6 @@
 
 
-<div ng-controller = "newController">
+<div ng-controller = "allProductsController">
 
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -16,7 +16,8 @@
   <input type="submit" value="Submit" >
 </form> -->
 
-<h3>All our products</h3>
+<h3>Hi, {{ username }}</h3>
+<h4>These are all our products</h4>
 <table ng-if = "products">
   <h2>You can search also</h2><label>Search: <input type="text" id="searchfield" ng-model="filter_name"></label> <button type="button" id="clearButton">Clear Search</button>
   <script>

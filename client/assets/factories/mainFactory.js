@@ -34,6 +34,8 @@ var factory = {};
 
   // mainFactory.logout()
   factory.logout = function() {
+    $cookieStore.remove('email');
+    $cookieStore.remove('username');
     factory.setToken();
   }
 
@@ -46,11 +48,6 @@ var factory = {};
     }
   }
 
-  // factory.request = function(config) {
-  //   var token = factory.getToken();
-  //   if(token) config.headers['x-access-token'] = token;
-  //   return config;
-  // }
 
 
   return factory;

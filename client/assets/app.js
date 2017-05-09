@@ -21,7 +21,7 @@ app.config(function ($routeProvider) {
     })
     .when('/all', {
       templateUrl: 'partials/allproducts.html',
-      controller : 'newController'
+      controller : 'allProductsController'
     })
     .otherwise({
       redirectTo: '/'

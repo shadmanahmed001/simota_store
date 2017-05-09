@@ -1,5 +1,19 @@
 
-app.controller('newController', ['$scope','productsFactory','$routeParams', function($scope, productsFactory, $routeParams) {
+app.controller('allProductsController', ['$scope','productsFactory','$routeParams', '$cookieStore', '$location', function($scope, productsFactory, $routeParams, $cookieStore, $location) {
+
+
+  var CheckingUser = function () {
+  if (!$cookieStore.get('email')) {
+    console.log("Not Logged In");
+    $location.path('/');
+  } else {
+    console.log("logged in");
+    $location.path('/all')
+  }
+};
+CheckingUser();
+
+$scope.username = $cookieStore.get('username')
       productsFactory.index(function(data) {
       $scope.products = data;
       })
@@ -18,6 +32,12 @@ app.controller('newController', ['$scope','productsFactory','$routeParams', func
       });
     });
   }
+
+
+
+
+
+
   // $scope.show = function(product){
   //   productsFactory.show(product, function(data){
   //     console.log(data);

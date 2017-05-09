@@ -31,7 +31,7 @@ module.exports = function(app, passport) {
       callbackURL: 'http://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
       profileFields: ['id', 'displayName', 'email', 'gender', 'age_range']
     },
-    function(accessToken, refreshToken, profile, done) {    // Change this function to save the user into the db
+    function(accessToken, refreshToken, profile, done) {    // Saving the user
       // console.log(profile);
       User.findOne({ email: profile._json.email}).select('username password email').exec(function(err, user){
         console.log("finding user");

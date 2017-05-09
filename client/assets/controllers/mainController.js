@@ -1,20 +1,42 @@
 console.log("mainController");
-app.controller('mainController', ['$scope','mainFactory','$routeParams', '$location', function($scope, mainFactory, $routeParams, $location) {
+app.controller('mainController', ['$scope','mainFactory','$routeParams', '$location', '$cookieStore', '$rootScope', function($scope, mainFactory, $routeParams, $location, $cookieStore, $rootScope) {
 
   // This is the controller that will control the Index body
 
+  // This will check function every time the route changes
+  $rootScope.$on('$routeChangeStart', function(){
 
-  if (mainFactory.isLoggedIn()){
-    console.log('Success: User is logged in');
-    mainFactory.getUser().then(function(data) {
-      console.log(data);
-    })
-  } else {
-    console.log('Failure: User is NOT logged in');
-  }
+    if (mainFactory.isLoggedIn()){
+      console.log('Success: User is logged in');
+      mainFactory.getUser().then(function(data) {
+        if(!$cookieStore.get('email')){
+          $cookieStore.put('username', data.data.username) // Adding the user name and email in the cookies
+          $cookieStore.put('email', data.data.email)
+        }
+        $scope.username = data.data.username;    // Adding the username to scope
+        console.log(data.data);
+        console.log(data.data.email);
+        console.log(data.data.username);
+
+      })
+    } else {
+      console.log('Failure: User is NOT logged in');
+      $scope.username = '';
+    }
+
+  })
 
 
 
+  var CheckingUser = function () {
+    if (!$cookieStore.get('logged-in')) {
+      console.log("Not Logged In");
+      $location.url('/');
+    } else {
+      console.log("logged in");
+    }
+  };
+  CheckingUser();
 
   $scope.logout = function(){
     // do something

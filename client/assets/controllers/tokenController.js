@@ -5,7 +5,8 @@ console.log('hi');
 
 mainFactory.facebook($routeParams.token);
   // console.log($routeParams.token);
-  $location.url('/all')
+  // Sending the user to the products page
+  $location.path('/all')
 
   // send the token to back and get username and email to store in fac
 }]);
