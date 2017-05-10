@@ -1,11 +1,18 @@
-<div ng-controller = "editController">
-<form ng-submit = "update()">
-  <h5>Edit {{product.name}} </h5>
-  <input type="text" ng-model = "product.name" >
-  Product Description: <input type="text" ng-model = "product.description" >
-  Product Image: <input type="text" ng-model = "product.image" >
-  Product Price: <input type="price" ng-model = "product.price" >
-  Others Price: <input type="text" ng-model = "product.others_price" >  <input type="submit" value="Update" >
+<div >
 
-  
- </div>
+ <form ng-submit = "update()">
+   <fieldset>
+     <h5>Edit {{editproducts.name}} </h5>
+   Product Name: <input type="text" ng-model = "editproducts.name" placeholder="name of product- stay consistent" name = "name" >
+  Category Name: <input type="text" placeholder="name of product category- stay consistent" ng-model="editproducts.category" >
+   Product Description: <input type="text" ng-model = "editproducts.description" placeholder="description of the product- stay consistent" name = "description" >
+   Product Image: <input type="text" ng-model = "editproducts.image" placeholder="link of the product- stay consistent" name = "image" >
+   Quantity: <input type="number" ng-model = "editproducts.quantity" placeholder = "quantity" min="0" max="200" >
+   Expiry Date: <input type="date"   >
+   Product Price: <input type="price" placeholder="our price" ng-model = "editproducts.price" name = "price" ><br>
+   Others Price: <input type="price" ng-model = "editproducts.others_price" placeholder="others price" name = "others_price" ><br>
+   <button type="submit" <a class="waves-effect waves-light btn"><i class="material-icons right">done</i>Change</a></button>
+   <!-- <input type="submit" value="Submit" > -->
+   </fieldset>
+ </form>
+</div>

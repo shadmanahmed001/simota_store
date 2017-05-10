@@ -1,4 +1,4 @@
-console.log("mainController");
+// console.log("mainController");
 app.controller('mainController', ['$scope','mainFactory','$routeParams', '$location', '$cookieStore', '$rootScope', function($scope, mainFactory, $routeParams, $location, $cookieStore, $rootScope) {
 
   // This is the controller that will control the Index body

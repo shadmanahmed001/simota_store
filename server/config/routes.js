@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var products = require('../controllers/product')
 var users = require('../controllers/user')
+var adminUser = require('../controllers/adminUser')
 // var passport = require('./passport')
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
@@ -8,6 +9,11 @@ var secret = 'shadman';
 
 
 var path = require('path')
+
+// Making the Admin and Manager Accounts
+adminUser.createAdminUser();
+
+
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
 
@@ -58,27 +64,13 @@ app.post('/user', function(request, response) {
   users.verifyUser(request, response);
 });
 
-// Passport JS
-// app.post('/signup', passport.authenticate('local-signup', {
-//
-//   successRedirect: '/mainpage',
-//   failureRedirect: '/login',
-//   failureFlash: true
-// }));
+
 
 app.get('/logout', function(request, response){
   request.logout();
   response.redirect('/')
 })
-// Facebook
-// app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
-//
-//
-// app.get('/auth/facebook/callback',
-//   passport.authenticate('facebook', {
-//     successRedirect: '/mainpage',
-//     failureRedirect: '/'
-//   }));
+
 
 // End of Facebook
 app.post('/products', function(request, response) {
@@ -95,7 +87,7 @@ app.delete('/products/:id', function(request, response) {
 //This is the redirect to set token page
 app.get('/mainpage/:id', function(request, response) {
   response.redirect('/#!/mainpage/' + request.params.id)
-})
+});
 
 // This is to verify the token and send the email and name
 app.use(function(request, response, next) {
@@ -120,8 +112,7 @@ app.use(function(request, response, next) {
 app.post('/verifytoken', function(request, response){
   console.log('inside the server verifytoken func');
   response.send(request.decoded);
-})
-
+});
 
 
 

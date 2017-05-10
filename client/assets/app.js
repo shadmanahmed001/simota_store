@@ -5,7 +5,7 @@ app.config(function ($routeProvider) {
   $routeProvider
   .when('/',{
     templateUrl: 'partials/login.html',
-    controller : 'loginController'
+    // controller : 'loginController'
   })
   .when('/mainpage/:token',{
     templateUrl: 'partials/mainpage.html',
@@ -13,15 +13,23 @@ app.config(function ($routeProvider) {
   })
   .when('/adminlogin',{
     templateUrl: 'partials/adminlogin.html',
-    // controller : 'loginController'
+    controller : 'adminLoginController'
   })
-    .when('/edit/:id',{
-      templateUrl: 'partials/edit.html',
-      controller : 'editController'
-    })
+  .when('/edit/:id',{
+    templateUrl: 'partials/edit.html',
+    controller : 'adminAddProductController'
+  })
     .when('/all', {
       templateUrl: 'partials/allproducts.html',
       controller : 'allProductsController'
+    })
+    .when('/adminaddproduct', {
+      templateUrl: 'partials/adminAddProduct.html',
+      controller : 'adminAddProductController'
+    })
+    .when('/manager', {
+      templateUrl: 'partials/manager.html',
+      // controller : 'adminAddProductController'
     })
     .otherwise({
       redirectTo: '/'

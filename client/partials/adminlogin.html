@@ -1,15 +1,16 @@
 <div>
-  <h5>Smiota People login here</h5>
-  <form class="col s12" ng-submit="signupUser()">
+  <h5>Smiota Team login here</h5>
+  {{ error_messages }}
+  <form class="col s12" ng-submit="loginAdmin()">
   <div class="row">
     <div class="input-field col s12">
-      <input id="email" type="email" name = "email"  class="validate">
+      <input id="email" type="email" name = "email"  class="validate" ng-model="adminLogin.email">
       <label for="email">Email</label>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <input id="password" type="password" name = "password" class="validate">
+      <input id="password" type="password" name = "password" class="validate" ng-model="adminLogin.password">
       <label for="password">Password</label>
     </div>
   </div>

@@ -19,8 +19,13 @@ module.exports = {
     newProduct.image = request.body.image
     newProduct.price = request.body.price
     newProduct.others_price = request.body.others_price
+    newProduct.category = request.body.category
     if(request.body.quantity){
       newProduct.quantity = request.body.quantity
+    }
+    if(request.body.expiry){
+      console.log(request.body.expiry);
+      newProduct.expiry = request.body.expiry
     }
     console.log("the product made is", newProduct);
     newProduct.save(function(err){
@@ -36,7 +41,7 @@ module.exports = {
           }
           else{
             console.log('your sending all the products json');
-            response.redirect('smiotastore/admin/addproduct');
+            response.json({data: data});
           }
         })
       }

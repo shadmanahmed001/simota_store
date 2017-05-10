@@ -1,4 +1,4 @@
-console.log("Serverside user model");
+// console.log("Serverside user model");
 var mongoose = require('mongoose');
 var UserSchema = new mongoose.Schema({
   email: { type: String},

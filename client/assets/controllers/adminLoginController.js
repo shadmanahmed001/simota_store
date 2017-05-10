@@ -1,37 +1,38 @@
-console.log("login controller is started");
+// console.log("adminLoginController is started");
 
-app.controller('loginController', ['$scope', '$location', 'userFactory', '$cookieStore',  function ($scope, $location, userFactory, $cookieStore) {
+app.controller('adminLoginController', ['$scope', '$location', 'userFactory', '$cookieStore',  function ($scope, $location, userFactory, $cookieStore) {
+  // $scope.adminLogin = {}
+  $scope.error_messages = "";
 
-  $scope.existingUser = {};
-  $scope.error_messages = [];
+  $scope.loginAdmin = function() {
 
-// ***************************************************
-//     I DONT NEED THIS CONTROLLER DELETE IT AFTER TESTING
-// ***************************************************
-//
+    if ($scope.adminLogin.email && $scope.adminLogin.password){
+      console.log('should be filled');
+      if ($scope.adminLogin.email === 'admin@smiota.com' && $scope.adminLogin.password == 'asdf'){
+        console.log('Admin is logged in');
+        $location.path('/adminaddproduct')
+      }
+      if ($scope.adminLogin.email === 'manager@smiota.com' && $scope.adminLogin.password == 'asdf'){
+        console.log('Manager is logged in');
+        $location.path('/manager')
+      }
+    else {
+      $scope.error_messages = 'Invalid';
+    }
+  }
 
-  var CheckingUser = function () {
-  if (!$cookieStore.get('email')) {
-    console.log("Not Logged In");
-    $location.path('/');
-  } else {
-    console.log("logged in");
-    $location.path('/all');
 
   }
-};
-CheckingUser();
-
 
 // Sign Out Of Google
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
-  console.log($scope.profile);
+  // function signOut() {
+  //   var auth2 = gapi.auth2.getAuthInstance();
+  //   auth2.signOut().then(function () {
+  //     console.log('User signed out.');
+  //   });
+  // }
+  //
+  // console.log($scope.profile);
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User
