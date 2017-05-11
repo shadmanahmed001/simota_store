@@ -14,9 +14,16 @@ app.controller('allProductsController', ['$scope','productsFactory','$routeParam
 CheckingUser();
 
 $scope.username = $cookieStore.get('username')
-      productsFactory.index(function(data) {
-      $scope.products = data;
-      })
+
+  productsFactory.index(function(data) {
+  $scope.products = data;
+  })
+
+$scope.addToCart = function(product) {
+  console.log("need to finish the cart stuff");
+  console.log(product);
+}
+
   $scope.create = function() {
       productsFactory.create($scope.newProduct, function(data) {
           productsFactory.index(function(data) {
@@ -25,6 +32,8 @@ $scope.username = $cookieStore.get('username')
           })
       });
   }
+
+
   $scope.delete = function(product){
     productsFactory.delete(product, function(data){
       productsFactory.index(function(data){
@@ -35,13 +44,4 @@ $scope.username = $cookieStore.get('username')
 
 
 
-
-
-
-  // $scope.show = function(product){
-  //   productsFactory.show(product, function(data){
-  //     console.log(data);
-  //     $scope.data = data;
-  //   })
-  // }
 }]);

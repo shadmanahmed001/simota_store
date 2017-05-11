@@ -4,17 +4,24 @@ app.controller('adminLoginController', ['$scope', '$location', 'userFactory', '$
   // $scope.adminLogin = {}
   $scope.error_messages = "";
 
+
   $scope.loginAdmin = function() {
 
     if ($scope.adminLogin.email && $scope.adminLogin.password){
       console.log('should be filled');
       if ($scope.adminLogin.email === 'admin@smiota.com' && $scope.adminLogin.password == 'asdf'){
         console.log('Admin is logged in');
-        $location.path('/adminaddproduct')
+        if (!$cookieStore.get('username')){
+          $cookieStore.put('username', 'admin')
+          $location.path('/adminaddproduct')
+        }
       }
       if ($scope.adminLogin.email === 'manager@smiota.com' && $scope.adminLogin.password == 'asdf'){
         console.log('Manager is logged in');
-        $location.path('/manager')
+        if(!$cookieStore.get('username')){
+          $cookieStore.put('username', 'manager')
+          $location.path('/manager')
+        }
       }
     else {
       $scope.error_messages = 'Invalid';

@@ -36,6 +36,7 @@ var factory = {};
   factory.logout = function() {
     $cookieStore.remove('email');
     $cookieStore.remove('username');
+    $cookieStore.remove('cart');
     factory.setToken();
   }
 
