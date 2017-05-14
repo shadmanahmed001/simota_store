@@ -1,10 +1,10 @@
 // console.log("serverside user controller");
 var mongoose = require('mongoose');
-var http = require('http')
+// var http = require('http')
 var User = mongoose.model('User');
-var GoogleAuth = require('google-auth-library');
-var auth = new GoogleAuth;
-var client = new auth.OAuth2("689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com", '', '');
+// var GoogleAuth = require('google-auth-library');
+// var auth = new GoogleAuth;
+// var client = new auth.OAuth2("689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com", '', '');
 
 module.exports = {
   // Making Admin and Manager accounts
@@ -106,7 +106,7 @@ module.exports = {
       else{
         response.json(product)
       }
-    })  }
+    })  },
   // update: function(request,response){
   //     Product.update({_id: request.params.id},request.body, function(err) {
   //       if(err){
@@ -138,4 +138,97 @@ module.exports = {
   //     }
   //   })
   // },
+
+addtocart: function(request, response){
+  console.log(request.body.email);
+  console.log(request.body.product);
+  User.findOne({email: request.body.email}, function(err, user){
+    if(err){
+      console.log('err in add to cart');
+      response.json(err);
+    }
+    else{
+      // found the user and now lets add
+      // could do logic to minus the quantity of slected from the prodcuts model to show a reserved but will need timeout for that
+      var item = {item: request.body.product, quantity: request.body.quantity}
+      // Check if the product is already in the cart
+      for (var i = 0; i<= user.cart.length-1; i++){
+        if(user.cart[i].item == request.body.product._id){
+          console.log('this item is here');
+          user.cart[i].quantity = item.quantity
+        }
+        else {
+          console.log('this item is not here');
+          user.cart.push(item)
+        }
+      }
+
+      user.save(function(err){
+        if(err){
+          console.log(err);
+          response.json(err);
+        }
+        else{
+          console.log('done');
+          // console.log(user.cart);
+          response.json(user)
+        }
+      })
+    }
+  })
+
+},
+
+usercart: function(request, response) {
+  User.findOne({email: request.body.email}
+    .populate('cart')
+    .exec(function(err, user) {
+      if(err){
+        console.log(err);
+      }
+      else{
+        console.log(user);
+      }
+    })
+
+
+
+  )}
+
+
+
+
+  //
+  // Story
+  // .findOne({ title: 'Once upon a timex.' })
+  // .populate('_creator')
+  // .exec(function (err, story) {
+  //   if (err) return handleError(err);
+  //   console.log('The creator is %s', story._creator.name);
+  //   // prints "The creator is Aaron"
+  // });
+
+//     function(err, user){
+//     if(err){
+//       console.log('err in usercart');
+//       response.json(err);
+//     }
+//     else{
+//       // found the user and now lets add
+//       response.json(user)
+// }
+
+
+
+
+
+
+// }
+// )}
+
+
+
+
+
+// end of export
 }

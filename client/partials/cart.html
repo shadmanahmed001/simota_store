@@ -1,0 +1,30 @@
+<h5>Check out your cart</h5>
+{{username}}'s Cart
+
+<div ng-repeat = "item in cart">
+<h4>{{item.name}}</h4>
+</div>
+<table ng-if = "cart">
+   <tr>
+     <th>Product Name</th>
+     <th>Product Description</th>
+     <th>Product Image</th>
+     <th>Product Price</th>
+     <th>Others Price</th>
+     <th>In Stock</th>
+
+   </tr>
+   <tr ng-repeat = "item in cart">
+     <td> <span ng-bind="item.item"></span> </td>
+     <td> <span ng-bind="item.quantity"></span> </td>
+     <td><img src="{{item.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
+     <td> $<span ng-bind="item._id"></span> </td>
+     <td> $<span ng-bind="item.others_price"></span> </td>
+     <td><span ng-bind="item.quantity"></span> </td>
+
+
+
+
+
+   </tr>
+ </table>

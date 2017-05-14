@@ -1,6 +1,24 @@
 
-app.controller('allProductsController', ['$scope','productsFactory','$routeParams', '$cookieStore', '$location', function($scope, productsFactory, $routeParams, $cookieStore, $location) {
+app.controller('showProductController', ['$scope','productsFactory','$routeParams', '$cookieStore', '$location', function($scope, productsFactory, $routeParams, $cookieStore, $location) {
 
+  $scope.showError = ""
+// Product Show Page
+  productsFactory.show($routeParams.id, function(data){
+    $scope.showproducts = data
+  })
+
+  $scope.addToCart = function(product, quantity) {
+    if (quantity > product.quantity){
+      $scope.showError = "Choose amount that is within stock!"
+    }
+    else {
+    var email = $cookieStore.get('email');
+    productsFactory.addToCart({"email": email, "product": product, "quantity": quantity}, function(data) {
+      console.log('this is the cart', data);
+      $location.path('/all')
+    })
+  }
+  }
 
 
   var CheckingUser = function () {
@@ -12,7 +30,7 @@ app.controller('allProductsController', ['$scope','productsFactory','$routeParam
     $location.path('/all')
   }
 };
-CheckingUser();
+// CheckingUser();
 
 $scope.username = $cookieStore.get('username')
 
@@ -20,16 +38,6 @@ $scope.username = $cookieStore.get('username')
   $scope.products = data;
   })
 
-$scope.addToCart = function(product) {
-
-  // console.log("need to finish the cart stuff");
-  // console.log(product);
-  var email = $cookieStore.get('email');
-  productsFactory.addToCart({"email": email, "product": product}, function(data) {
-    console.log(data);
-    // DO SOMETHING WITH returned_data
-})
-}
 
 
   $scope.create = function() {

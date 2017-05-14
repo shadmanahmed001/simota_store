@@ -28,11 +28,6 @@ app.get('/edit/:id', function(request, response) {
   products.show(request, response);
 });
 
-// this is going to be the route for the admin add product page
-
-app.get('/smiotastore/admin/addproduct', function(request, response){
-  response.sendFile(path.join(__dirname,'../../views/addProductPage.html'))
-});
 
 // this is where the stripe get method is going to go
 // need to send it to json so angualr has the info
@@ -58,11 +53,11 @@ app.post("/charge", function(request, response){
   .then(charge => response.render("charge.pug"));
 });
 
-app.post('/user', function(request, response) {
-  console.log("ji");
-  console.log(response["signedInUser"]);
-  users.verifyUser(request, response);
-});
+// app.post('/user', function(request, response) {
+//   console.log("ji");
+//   console.log(response["signedInUser"]);
+//   users.verifyUser(request, response);
+// });
 
 
 
@@ -114,9 +109,17 @@ app.post('/verifytoken', function(request, response){
   response.send(request.decoded);
 });
 
+// ******************************************
+          // CART
+// ******************************************
 
+app.post('/addtocart', function(request, response) {
+  users.addtocart(request, response);
+})
 
-
+app.post('/usercart', function(request, response){
+  users.usercart(request, response)
+})
 
 
 

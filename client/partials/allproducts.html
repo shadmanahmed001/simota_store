@@ -9,6 +9,8 @@
 
 
 <h3>Hi, {{ username }}</h3>
+<h5>NAV go here</h5>
+<h5><a href="#!/cart">See Your Cart</a></h5>
 <h4>These are all our products</h4>
 <table ng-if = "products">
   <h2>You can search also</h2><label>Search: <input type="text" placeholder="Search Products/ Brands/ Descriptions/ anything you want" ng-model="filter_name"></label>
@@ -28,15 +30,20 @@
      <td> $<span ng-bind="product.price"></span> </td>
      <td> $<span ng-bind="product.others_price"></span> </td>
      <td><span ng-bind="product.quantity"></span> </td>
-     <td><input type="number" ng-model="product"
+     <!-- <td>Choose your quantity<input type="number" min="1" max="5" ng-model="selectedQuantity"></td> -->
 
-    <select>
-      <option>Choose your quantity</option>
-      <option ng-model="product.quantity">Option 1</option>
-    </select>
+       <!-- HAVE SOMETHING TO LET USER PICK QUANTITY -->
+         <!-- <select>
+         <option>Choose your quantity</option>
+       </select> -->
 
 
- <td><button ng-click = 'addToCart(product)'>Add to Cart</button></td>
+ <!-- <td><button ng-click = 'addToCart(product)'>Add to Cart</button></td> -->
+
+ <td><a href="#!/show/{{product._id}}">See Item</a></td>
+
+
+
 
    </tr>
  </table>

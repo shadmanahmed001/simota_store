@@ -10,6 +10,7 @@ app.controller('mainController', ['$scope','mainFactory','$routeParams', '$locat
       console.log('Success: User is logged in');
       mainFactory.getUser().then(function(data) {
         if(!$cookieStore.get('email')){
+          // console.log(data);
           $cookieStore.put('username', data.data.username) // Adding the user name and email in the cookies
           $cookieStore.put('email', data.data.email)
         }

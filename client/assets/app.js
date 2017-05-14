@@ -19,21 +19,29 @@ app.config(function ($routeProvider) {
     templateUrl: 'partials/edit.html',
     controller : 'adminAddProductController'
   })
-    .when('/all', {
-      templateUrl: 'partials/allproducts.html',
-      controller : 'allProductsController'
-    })
-    .when('/adminaddproduct', {
-      templateUrl: 'partials/adminAddProduct.html',
-      controller : 'adminAddProductController'
-    })
-    .when('/manager', {
-      templateUrl: 'partials/manager.html',
-      // controller : 'adminAddProductController'
-    })
-    .otherwise({
-      redirectTo: '/'
-    })
+  .when('/show/:id',{
+    templateUrl: 'partials/showproduct.html',
+    controller : 'showProductController'
+  })
+  .when('/all', {
+    templateUrl: 'partials/allproducts.html',
+    controller : 'allProductsController'
+  })
+  .when('/adminaddproduct', {
+    templateUrl: 'partials/adminAddProduct.html',
+    controller : 'adminAddProductController'
+  })
+  .when('/manager', {
+    templateUrl: 'partials/manager.html',
+    // controller : 'adminAddProductController'
+  })
+  .when('/cart', {
+    templateUrl: 'partials/cart.html',
+    controller : 'cartController'
+  })
+  .otherwise({
+    redirectTo: '/'
+  })
 });
 
 app.config(function($httpProvider) {

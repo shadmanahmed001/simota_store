@@ -1,6 +1,8 @@
-// console.log("Serverside user model");
 var mongoose = require('mongoose');
-var OrderSchema = require('./order')
+var Order = require('./order');
+var Cart = require('./cart')
+var Schema = mongoose.Schema;
+
 var UserSchema = new mongoose.Schema({
   email: { type: String},
   username: { type: String },
@@ -8,9 +10,11 @@ var UserSchema = new mongoose.Schema({
   referer_id: { type: Number },
   gender: { type: String },
   age_range: { type: String },
-  _orders: [{
-    OrderSchema
-}],
+  orders: [],
+  cart: [{
+      item: {type: Schema.Types.ObjectId, ref: 'Product', required: true},
+      quantity: {type: Number, min: 1}
+    }]
 
 })
 
