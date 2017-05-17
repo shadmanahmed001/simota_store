@@ -23,9 +23,12 @@ module.exports = {
     if(request.body.quantity){
       newProduct.quantity = request.body.quantity
     }
+    console.log('this is the expirt', request.body.expiry);
+
     if(request.body.expiry){
-      console.log(request.body.expiry);
-      newProduct.expiry = request.body.expiry
+      var d = new Date(request.body.expiry)
+      var n = d.toLocaleDateString()
+      newProduct.expiry = n
     }
     console.log("the product made is", newProduct);
     newProduct.save(function(err){

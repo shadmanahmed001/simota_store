@@ -7,7 +7,7 @@ var ProductSchema = new mongoose.Schema({
   image: String,
   price: { type: Number, default: 0 },
   others_price: Number,
-  expiry: Date,
+  expiry: String,
   quantity: { type: Number, default: 0 },
   category: String
 

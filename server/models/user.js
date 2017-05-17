@@ -11,9 +11,9 @@ var UserSchema = new mongoose.Schema({
   gender: { type: String },
   age_range: { type: String },
   orders: [],
-  cart: [{
-      item: {type: Schema.Types.ObjectId, ref: 'Product', required: true},
-      quantity: {type: Number, min: 1}
+  cart: [{item:
+    {type: Schema.Types.ObjectId, ref:'Product', required: true},
+    quantity: {type: Number, min: 1}
     }]
 
 })

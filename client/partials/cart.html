@@ -1,9 +1,7 @@
 <h5>Check out your cart</h5>
 {{username}}'s Cart
 
-<div ng-repeat = "item in cart">
-<h4>{{item.name}}</h4>
-</div>
+
 <table ng-if = "cart">
    <tr>
      <th>Product Name</th>
@@ -11,20 +9,21 @@
      <th>Product Image</th>
      <th>Product Price</th>
      <th>Others Price</th>
-     <th>In Stock</th>
+     <th>In Cart</th>
 
    </tr>
    <tr ng-repeat = "item in cart">
-     <td> <span ng-bind="item.item"></span> </td>
-     <td> <span ng-bind="item.quantity"></span> </td>
-     <td><img src="{{item.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
-     <td> $<span ng-bind="item._id"></span> </td>
-     <td> $<span ng-bind="item.others_price"></span> </td>
-     <td><span ng-bind="item.quantity"></span> </td>
-
-
-
-
-
+     <td> <span ng-bind="item.item.name"></span> </td>
+     <td> <span ng-bind="item.item.description"></span> </td>
+     <td><img src="{{item.item.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
+     <td> $<span ng-bind="item.item.price"></span> </td>
+     <td> $<span ng-bind="item.item.others_price"></span> </td>
+     <!-- <td><span ng-bind="item.quantity"></span> </td> -->
+     <td><input type="number" min="item.quantity" ng-init="newQuantity=item.quantity" ng-model="newQuantity"> </td>
+     <td><input type="submit" ng-click="editCart(item, newQuantity)" value="Update"></td>
+     <td><input type="submit" value="Remove from Cart" ng-click="deleteFromCart(item)">
+     <!-- <td><span ng-bind="item.quantity"></span> </td> -->
+ {{error_messages}}
    </tr>
  </table>
+ <button type="button" ng-click= "makeOrder()">Continue to Checkout</button>

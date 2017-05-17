@@ -1,7 +1,11 @@
 // console.log("serverside user controller");
 var mongoose = require('mongoose');
+var Promise = require("bluebird");
+
 // var http = require('http')
 var User = mongoose.model('User');
+var Product = mongoose.model('Product')
+var Cart = mongoose.model('Cart')
 // var GoogleAuth = require('google-auth-library');
 // var auth = new GoogleAuth;
 // var client = new auth.OAuth2("689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com", '', '');
@@ -139,92 +143,124 @@ module.exports = {
   //   })
   // },
 
+// Adding Items and Editing Item in the Cart
 addtocart: function(request, response){
-  console.log(request.body.email);
-  console.log(request.body.product);
   User.findOne({email: request.body.email}, function(err, user){
     if(err){
-      console.log('err in add to cart');
+      console.log('err in add to cart', err);
       response.json(err);
     }
     else{
-      // found the user and now lets add
-      // could do logic to minus the quantity of slected from the prodcuts model to show a reserved but will need timeout for that
-      var item = {item: request.body.product, quantity: request.body.quantity}
-      // Check if the product is already in the cart
-      for (var i = 0; i<= user.cart.length-1; i++){
-        if(user.cart[i].item == request.body.product._id){
-          console.log('this item is here');
-          user.cart[i].quantity = item.quantity
+      var item = {item: request.body.product._id, quantity: request.body.quantity}
+      console.log('this is the user', user);
+
+      var toggle = true;
+      if (user.cart.length == 0){
+        console.log('there are no items in cart');
+        user.cart.push(item);
+        toggle = false;
+        user.save(function(err){
+          console.log('addin now');
+          if(err){
+            console.log(err);
+            response.json(err);
+          }
+          else{
+            console.log('no erros');
+            // console.log('this is the updated user',user);
+            response.json(user)
+          }
+        })
+      }
+      else if (user.cart != 0) {
+        for (var i = 0; i < user.cart.length; i++) {
+          if (user.cart[i].item == item.item) {
+            console.log('found same item in cart');
+            user.cart[i].quantity = item.quantity;
+            toggle = false;
+            user.save(function(err){
+              console.log('changing now');
+              if(err){
+                console.log(err);
+                response.json(err);
+              }
+              else{
+                console.log('no erros');
+                // console.log('this is the updated user',user);
+                console.log('this is the user after find same item', user);
+                response.json(user)
+              }
+            })
+          }
         }
-        else {
-          console.log('this item is not here');
-          user.cart.push(item)
+        if (toggle) {
+          console.log('new item in the cart');
+          user.cart.push(item);
+          user.save(function(err){
+            if(err){
+              console.log(err);
+              response.json(err);
+            }
+            else{
+              console.log('no erros');
+              // console.log('this is the updated user',user);
+              response.json(user)
+            }
+          })
+          console.log('saved the user and this is the cart:', user);
         }
       }
-
-      user.save(function(err){
-        if(err){
-          console.log(err);
-          response.json(err);
-        }
-        else{
-          console.log('done');
-          // console.log(user.cart);
-          response.json(user)
-        }
-      })
     }
   })
-
 },
 
+// Getting the cart items from the user
 usercart: function(request, response) {
-  User.findOne({email: request.body.email}
-    .populate('cart')
-    .exec(function(err, user) {
-      if(err){
-        console.log(err);
+User.findOne({email: request.body.email}).populate('cart.item').exec(function(err, user) {
+  if(err){
+    console.log('ohhh weee error', err);
+    response.json(err)
+  }
+  else{
+    console.log('got all user cart items');
+    response.json(user)
+  }
+  })
+},
+
+// Deleting from the cart
+deletefromcart: function(request, response) {
+  User.findOne({email: request.body.email}).populate('cart.item').exec(function(err, user) {
+    if(err){
+      console.log('err oh crap', err);
+      response.json(err);
+    }
+    else{
+      for (var i = 0; i < user.cart.length; i++) {
+        console.log(user.cart[i]._id);
+        if (user.cart[i]._id == request.body.cartId) {
+          user.cart.splice(i,1)
+          user.save(function(err){
+            if(err){
+              console.log(err);
+              response.json(err);
+            }
+            else{
+              console.log('no errors');
+              response.json(user)
+            }
+          })
+        }
       }
-      else{
-        console.log(user);
-      }
-    })
-
-
-
-  )}
-
-
-
-
-  //
-  // Story
-  // .findOne({ title: 'Once upon a timex.' })
-  // .populate('_creator')
-  // .exec(function (err, story) {
-  //   if (err) return handleError(err);
-  //   console.log('The creator is %s', story._creator.name);
-  //   // prints "The creator is Aaron"
-  // });
-
-//     function(err, user){
-//     if(err){
-//       console.log('err in usercart');
-//       response.json(err);
-//     }
-//     else{
-//       // found the user and now lets add
-//       response.json(user)
-// }
+    }
+  })
+}
 
 
 
 
 
 
-// }
-// )}
 
 
 

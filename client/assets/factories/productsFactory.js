@@ -45,6 +45,7 @@ app.factory('productsFactory', ['$http', function($http) {
             // CART
 // ******************************************
 factory.addToCart =  function(userEmailWithProductQuantity, callback) {
+  console.log('this is fromt he product fac');
   console.log(userEmailWithProductQuantity);
   $http.post('/addtocart', userEmailWithProductQuantity).then(function(returned_data) {
       console.log('this is from addtocart func', returned_data.data);

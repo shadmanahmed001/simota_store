@@ -1,13 +1,13 @@
 <div >
 
-<h4>Name:{{showproducts.name}}</h4>
-<h4>Category:{{showproducts.category}}</h4>
-<h4>Description:{{showproducts.description}}</h4>
+<h4>Name: {{showproducts.name}}</h4>
+<h4>Category: {{showproducts.category}}</h4>
+<h4>Description: {{showproducts.description}}</h4>
 <h4>Image:<img src="{{showproducts.image}}" alt="Product Image"></h4>
-<h4>Our Price:{{showproducts.price}}</h4>
-<h4>Other's Price:{{showproducts.others_price}}</h4>
-<h4>Available in Stock:{{showproducts.quantity}}</h4>
-<h4>Quantity:<input type="number" min="1" max="{{showproducts.quantity}}" ng-init="quantitySelected= 1" ng-model="quantitySelected"></h4>
+<h4>Our Price: {{showproducts.price}}</h4>
+<h4>Other's Price: {{showproducts.others_price}}</h4>
+<h4>Available in Stock: {{showproducts.quantity}}</h4>
+<h4>Quantity to add:<input type="number" min="1"  ng-init="quantitySelected= 1" ng-model="quantitySelected"></h4>
 <button type="button" name="button" ng-click="addToCart(showproducts, quantitySelected)">Add To Cart</button>
 {{ showError }}
 </div>

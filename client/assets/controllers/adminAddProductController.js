@@ -53,7 +53,6 @@ $scope.update = function(){
 
 
 $scope.create = function() {
-  console.log($scope.newProduct.expiry);
     adminFactory.create($scope.newProduct, function(data) {
         adminFactory.index(function(data) {
             $scope.products = data;

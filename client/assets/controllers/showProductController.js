@@ -27,36 +27,36 @@ app.controller('showProductController', ['$scope','productsFactory','$routeParam
     $location.path('/');
   } else {
     console.log("logged in");
-    $location.path('/all')
+    // $location.path('/all')
   }
 };
-// CheckingUser();
+CheckingUser();
 
 $scope.username = $cookieStore.get('username')
 
-  productsFactory.index(function(data) {
-  $scope.products = data;
-  })
+  // productsFactory.index(function(data) {
+  // $scope.products = data;
+  // })
 
 
 
-  $scope.create = function() {
-      productsFactory.create($scope.newProduct, function(data) {
-          productsFactory.index(function(data) {
-              $scope.products = data;
-              $scope.newProduct = {};
-          })
-      });
-  }
+  // $scope.create = function() {
+  //     productsFactory.create($scope.newProduct, function(data) {
+  //         productsFactory.index(function(data) {
+  //             $scope.products = data;
+  //             $scope.newProduct = {};
+  //         })
+  //     });
+  // }
 
 
-  $scope.delete = function(product){
-    productsFactory.delete(product, function(data){
-      productsFactory.index(function(data){
-        $scope.products = data;
-      });
-    });
-  }
+  // $scope.delete = function(product){
+  //   productsFactory.delete(product, function(data){
+  //     productsFactory.index(function(data){
+  //       $scope.products = data;
+  //     });
+  //   });
+  // }
 
 
 

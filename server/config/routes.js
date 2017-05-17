@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var products = require('../controllers/product')
 var users = require('../controllers/user')
+var orders = require('../controllers/order')
 var adminUser = require('../controllers/adminUser')
 // var passport = require('./passport')
 var passport = require('passport');
@@ -121,10 +122,17 @@ app.post('/usercart', function(request, response){
   users.usercart(request, response)
 })
 
+app.post('/deletefromcart', function(request, response) {
+  users.deletefromcart(request, response)
+})
 
+app.post('/createorder', function(request, response) {
+  orders.createorder(request, response)
+})
 
-
-
+app.post('/getorder', function(request, response) {
+  orders.getOrder(request, response)
+})
 
 
 

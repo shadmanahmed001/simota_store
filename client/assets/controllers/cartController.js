@@ -2,6 +2,7 @@
 app.controller('cartController', ['$scope', 'cartFactory','$routeParams','$location', '$cookieStore', function($scope, cartFactory, $routeParams, $location, $cookieStore){
 
 $scope.username = $cookieStore.get('username')
+var email = $cookieStore.get('email')
 
   var CheckingUser = function () {
   if (!$cookieStore.get('email')) {
@@ -14,11 +15,42 @@ $scope.username = $cookieStore.get('username')
 };
 CheckingUser();
 
-  var email = $cookieStore.get('email')
   cartFactory.usercart({"email": email}, function(data) {
-  $scope.cart = data.cart;
-  console.log($scope.cart);
+  $scope.user = data;
+  $scope.cart = data.cart
+  console.log('this is the user cart is',$scope.cart);
 });
+
+$scope.editCart = function(item, newQuantity){
+  cartFactory.editCart({"email": email, "product": item.item, "quantity": newQuantity}, function(data) {
+    if(data.errors){
+      $scope.error_messages = "Invalid: Min is 1"
+    }
+    else{
+      $scope.user = data;
+    }
+    // $scope.cart = data.cart
+    $location.path('/cart')
+  })
+};
+
+$scope.deleteFromCart = function(item) {
+  cartFactory.deleteFromCart({"email": email, "cartId": item._id}, function(data) {
+    $scope.cart = data.cart
+    $scope.user = data;
+    $location.path('/cart')
+  })
+};
+
+$scope.makeOrder = function() {
+  console.log($scope.user);
+  cartFactory.makeOrder($scope.user, function(data) {
+    console.log('this is from the makeorder',data);
+    $location.path('/checkout')
+
+  })
+}
+
 
 // console.log($routeParams.id);
 // cartFactory.show($routeParams.id, function(data){

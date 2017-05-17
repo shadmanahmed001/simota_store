@@ -6,10 +6,10 @@ var User = require('./user');
 var OrderSchema = new mongoose.Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true},
   products: [{
-    item: [{type: Schema.Types.ObjectId, ref: 'Product'}],
+    item: {type: Schema.Types.ObjectId, ref: 'Product'},
     quantityBought: {type: Number, required: true, min: 1}
   }],
-  dateOfOrder: {type: Date, default: new Date()}
+  dateOfOrder: {type: String, default: new Date().toLocaleDateString()}
 });
 
 module.exports = mongoose.model('Orders', OrderSchema)
