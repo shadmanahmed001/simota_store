@@ -46,7 +46,7 @@ $scope.makeOrder = function() {
   console.log($scope.user);
   cartFactory.makeOrder($scope.user, function(data) {
     console.log('this is from the makeorder',data);
-    $location.path('/checkout')
+    $location.path('/revieworder')
 
   })
 }

@@ -22,12 +22,24 @@ var email = $cookieStore.get('email')
 };
 CheckingUser();
 
+// Stripe
+Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
+Stripe.applePay.checkAvailability(function(available) {
+  if (available) {
+    document.getElementById('apple-pay-button').style.display = 'block';
+  }
+});
+
 checkoutFactory.getOrder({"email": email}, function(data) {
-  console.log(email);
   console.log('this is the getorder',data);
   $scope.order = data
 })
 
+$scope.payButtonPressed = function() {
+  console.log('pay up sukka');
+  $location.url('checkout')
+}
 
 
 

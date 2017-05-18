@@ -52,6 +52,7 @@ app.post("/charge", function(request, response){
     }))
   .catch(err => console.log("Error:", err))
   .then(charge => response.render("charge.pug"));
+
 });
 
 // app.post('/user', function(request, response) {

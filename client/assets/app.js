@@ -39,8 +39,8 @@ app.config(function ($routeProvider) {
     templateUrl: 'partials/cart.html',
     controller : 'cartController'
   })
-  .when('/checkout', {
-    templateUrl: 'partials/checkout.html',
+  .when('/revieworder', {
+    templateUrl: 'partials/revieworder.html',
     controller : 'checkoutController'
   })
   .otherwise({

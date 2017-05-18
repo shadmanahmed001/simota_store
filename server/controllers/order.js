@@ -62,7 +62,8 @@ getOrder: function(request, response) {
         }
         else {
           console.log('got order', order);
-          response.json(order)
+          // validation if the order exists then delete it
+          response.json(order[0])
         }
       })
     }
