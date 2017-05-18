@@ -6,10 +6,11 @@ var factory = {};
 
   // mainFactory.setToken(token);
   factory.setToken = function(token){
-    console.log('running this');
+    console.log('running this in main fac set token');
     if (token) {
       // $window.localStorage.token = token;
       console.log(token)
+      console.log('we here at the set token');
       $window.localStorage.setItem('token', token);
     } else {
       $window.localStorage.removeItem('token');
@@ -24,18 +25,19 @@ var factory = {};
 
   // mainFactory.getToken()
   factory.getToken = function() {
-    console.log('here');
+    console.log('main fac get token');
     console.log($window.localStorage.getItem('token'));
+    console.log(window.localStorage);
     return $window.localStorage.getItem('token');
   };
 
   // mainFactory.isLoggedIn()
   factory.isLoggedIn = function() {
-    console.log('main fac', factory.getToken());
     if (factory.getToken()){
       console.log('this is a test',factory.getToken());
       return true;
     } else {
+      console.log('no token ');
       return false;
     }
   };

@@ -14,6 +14,7 @@ app.controller('adminAddProductController', ['$scope', 'adminFactory','$routePar
   CheckingUser();
   function CheckingUser(){
     if(!$cookieStore.get('username')){
+      console.log('this part didnt work');
       console.log("Not logged in");
       $location.path('/')
     }

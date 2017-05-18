@@ -74,7 +74,9 @@ module.exports = function(app, passport) {
           failureRedirect: '/loginfailed' }), function(request, response){
             // console.log("this is response");
             // console.log(response);
+            console.log('redirecting to /mainpage/TOKEN');
             return response.redirect('/mainpage/' + token); // What user is redirected to after auth is done
+            console.log('shouldnt print');
           });
 
     app.get('/auth/facebook',

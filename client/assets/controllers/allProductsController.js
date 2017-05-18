@@ -3,16 +3,19 @@ app.controller('allProductsController', ['$scope','productsFactory','$routeParam
 
 
 
-  var CheckingUser = function () {
-  if (!$cookieStore.get('email')) {
-    console.log("Not Logged In");
-    $location.path('/');
-  } else {
-    console.log("logged in");
-    $location.path('/all')
-  }
-};
-CheckingUser();
+//   var CheckingUser = function () {
+//   if (!$cookieStore.get('email')) {
+//     console.log("Not Logged In");
+//     $location.path('/');
+//   } else {
+//     console.log("logged in");
+//     console.log('testing uncomment at end');
+//     console.log(window.location.href)
+//
+//     $location.path('/all')
+//   }
+// };
+// CheckingUser();
 
 $scope.username = $cookieStore.get('username')
 

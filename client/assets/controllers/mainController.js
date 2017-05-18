@@ -5,11 +5,12 @@ app.controller('mainController', ['$scope','mainFactory','$routeParams', '$locat
 
   // This will check function every time the route changes
   $rootScope.$on('$routeChangeStart', function(){
-
+    console.log('check');
     if (mainFactory.isLoggedIn()){
       console.log('Success: User is logged in');
       mainFactory.getUser().then(function(data) {
         if(!$cookieStore.get('email')){
+          console.log('there isnt a email in cookies');
           // console.log(data);
           $cookieStore.put('username', data.data.username) // Adding the user name and email in the cookies
           $cookieStore.put('email', data.data.email)
@@ -18,9 +19,17 @@ app.controller('mainController', ['$scope','mainFactory','$routeParams', '$locat
         console.log(data.data);
         console.log(data.data.email);
         console.log(data.data.username);
+        console.log($cookieStore.get('username'));
+        console.log($cookieStore.get('email'));
+
+
+        console.log('something wrong is the cookiestore');
+
 
       })
     } else {
+      console.log('check the cookiesstore part');
+      console.log('this is the cookiestore', $cookieStore);
       console.log('Failure: User is NOT logged in');
       $scope.username = '';
     }
