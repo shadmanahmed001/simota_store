@@ -1,5 +1,5 @@
 // interceptors factory
-console.log('authInterceptorsFactory factory started');
+// console.log('authInterceptorsFactory factory started');
 
 app.factory('authInterceptorsFactory', function($window) {
   var factory = {};

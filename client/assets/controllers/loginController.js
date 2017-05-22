@@ -1,4 +1,4 @@
-console.log("login controller is started");
+// console.log("login controller is started");
 
 app.controller('loginController', ['$scope', '$location', 'userFactory', '$cookieStore',  function ($scope, $location, userFactory, $cookieStore) {
 
@@ -6,13 +6,13 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
   $scope.error_messages = [];
 
 // ***************************************************
-//     I DONT NEED THIS CONTROLLER DELETE IT AFTER TESTING
+//     JUST CHECK SO LOGGED IN CANT SEE LOGIN
 // ***************************************************
 //
 
   var CheckingUser = function () {
   if (!$cookieStore.get('email')) {
-    console.log("Not Logged In");
+    // console.log("Not Logged In");
     $location.path('/');
   } else {
     console.log("logged in");
@@ -24,14 +24,14 @@ CheckingUser();
 
 
 // Sign Out Of Google
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
-  console.log($scope.profile);
+  // function signOut() {
+  //   var auth2 = gapi.auth2.getAuthInstance();
+  //   auth2.signOut().then(function () {
+  //     console.log('User signed out.');
+  //   });
+  // }
+  //
+  // console.log($scope.profile);
 
   // -------------------------------------------------------------------------
   //                            Check Logged In User
@@ -52,25 +52,25 @@ CheckingUser();
   // -------------------------------------------------------------------------
   //                            Login Admin User
   // -------------------------------------------------------------------------
-  $scope.login = function () {
-    console.log($scope.existingUser);
-    userFactory.login($scope.existingUser, function (dataFromServer) {
-      if (dataFromServer.success === false) {
-        console.log(dataFromServer.error_messages);
-        $scope.success = false;
-        $scope.error_messages = dataFromServer.error_messages;
-      } else {
-        if (dataFromServer.user.admin === 2) {
-          console.log("Sending User to inventory");
-          $scope.existingUser = {};
-          $location.url('/inventory');
-        } else {
-          $scope.existingUser = {};
-          $location.url('/userdashboard');
-        }
-      }
-    });
-  };
+  // $scope.login = function () {
+  //   console.log($scope.existingUser);
+  //   userFactory.login($scope.existingUser, function (dataFromServer) {
+  //     if (dataFromServer.success === false) {
+  //       console.log(dataFromServer.error_messages);
+  //       $scope.success = false;
+  //       $scope.error_messages = dataFromServer.error_messages;
+  //     } else {
+  //       if (dataFromServer.user.admin === 2) {
+  //         console.log("Sending User to inventory");
+  //         $scope.existingUser = {};
+  //         $location.url('/inventory');
+  //       } else {
+  //         $scope.existingUser = {};
+  //         $location.url('/userdashboard');
+  //       }
+  //     }
+  //   });
+  // };
 
 
 

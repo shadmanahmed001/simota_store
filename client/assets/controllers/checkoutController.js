@@ -1,4 +1,4 @@
-console.log('checkoutController');
+// console.log('checkoutController');
 app.controller('checkoutController', ['$scope', 'checkoutFactory', '$routeParams','$location', '$cookieStore', function($scope, checkoutFactory, $routeParams, $location, $cookieStore){
 
 $scope.username = $cookieStore.get('username')

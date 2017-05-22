@@ -1,11 +1,11 @@
-console.log("Loading Master App JS");
+// console.log("Loading Master App JS");
 
 var app = angular.module('app', ['ngRoute', 'ngCookies']);
 app.config(function ($routeProvider) {
   $routeProvider
   .when('/',{
     templateUrl: 'partials/login.html',
-    // controller : 'loginController'
+    controller : 'loginController'
   })
   .when('/mainpage/:token',{
     templateUrl: 'partials/mainpage.html',

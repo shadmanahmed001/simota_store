@@ -28,7 +28,7 @@ module.exports = function(app, passport) {
     passport.use(new FacebookStrategy({
       clientID: '833550933479237',
       clientSecret: '5fa5072baf46574bcf930bf0036e9bdd',
-      callbackURL: 'http://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
+      callbackURL: 'https://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
       profileFields: ['id', 'displayName', 'email', 'gender', 'age_range']
     },
     function(accessToken, refreshToken, profile, done) {    // Saving the user
@@ -76,7 +76,6 @@ module.exports = function(app, passport) {
             // console.log(response);
             console.log('redirecting to /mainpage/TOKEN');
             return response.redirect('/mainpage/' + token); // What user is redirected to after auth is done
-            console.log('shouldnt print');
           });
 
     app.get('/auth/facebook',

@@ -12,7 +12,7 @@ var secret = 'shadman';
 var path = require('path')
 
 // Making the Admin and Manager Accounts
-adminUser.createAdminUser();
+// adminUser.createAdminUser();
 
 
 const keyPublishable = process.env.PUBLISHABLE_KEY;

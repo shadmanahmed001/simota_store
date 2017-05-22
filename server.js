@@ -1,4 +1,15 @@
 
+var fs = require('fs');
+var https = require('https')
+var sskey = fs.readFileSync('key.pem');
+var sscert = fs.readFileSync('cert.pem')
+
+var options = {
+  key: sskey,
+  cert: sscert,
+  passphrase: 'shadman'
+};
+
 var express = require("express");
 var path = require("path");
 var app = express();
@@ -7,7 +18,7 @@ var multer = require('multer');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
-var social = require('./server/config/passport')(app, passport)
+var social = require('./server/config/passport')(app, passport);
 // const keyPublishable = process.env.PUBLISHABLE_KEY;
 // const keySecret = process.env.SECRET_KEY;
 // const stripe = require("stripe")(keySecret);
@@ -43,7 +54,9 @@ var routes_setter = require(path.join(__dirname,'./server/config/routes.js'));
 require('./server/config/passport')
 routes_setter(app, passport);
 
-
-app.listen(8000, function() {
- console.log("Smiota Store is listening on port 8000");
-});
+https.createServer(options, app).listen(8000, function() {
+  console.log("Smiota Store HTTPS at 8000");
+})
+// app.listen(8000, function() {
+//  console.log("Smiota Store is listening on port 8000");
+// });
