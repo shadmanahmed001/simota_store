@@ -38,7 +38,33 @@ checkoutFactory.getOrder({"email": email}, function(data) {
 
 $scope.payButtonPressed = function() {
   console.log('pay up sukka');
-  $location.url('checkout')
+  beginApplePay();
+  function beginApplePay() {
+    var paymentRequest = {
+      countryCode: 'US',
+      currencyCode: 'USD',
+      total: {
+        label: 'Stripe.com',
+        amount: '19.99' // make var for this total
+      }
+    };
+    var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
+      $http.post('/charges', { token: result.token.id }).done(function(){
+        completion(ApplePaySession.STATUS_SUCCESS);
+        // redirect to recipt page
+        $location.path('/recipt')
+      }).fail(function() {
+        completion(ApplePaySession.STATUS_FAILURE);
+      });
+    }, function(error){
+      console.log(error.message);
+    });
+    session.oncancel = function() {
+      console.log("User hit the cancel button in the payment window");
+    };
+    session.begin();
+  }
+  // $location.url('checkout')
 }
 
 
