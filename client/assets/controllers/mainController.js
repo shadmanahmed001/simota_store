@@ -46,7 +46,7 @@ app.controller('mainController', ['$scope','mainFactory','$routeParams', '$locat
       console.log("logged in");
     }
   };
-  CheckingUser();
+  // CheckingUser();
 
   $scope.logout = function(){
     // do something

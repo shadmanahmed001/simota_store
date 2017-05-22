@@ -83,7 +83,8 @@ app.delete('/products/:id', function(request, response) {
 
 //This is the redirect to set token page
 app.get('/mainpage/:id', function(request, response) {
-  response.redirect('/#!/mainpage/' + request.params.id)
+  console.log("hello at teh routhe paret");
+  return response.redirect('/#!/mainpage/' + request.params.id)
 });
 
 // This is to verify the token and send the email and name
