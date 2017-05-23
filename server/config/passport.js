@@ -1,10 +1,13 @@
 // var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var LinkedInStrategy = LinkedInStrategy = require('passport-linkedin').Strategy;
 var passport = require('passport');
 var User = require('../models/user');
 var session = require('express-session');
 var jwt = require('jsonwebtoken');
 var secret = 'shadman'
+var request = require('request')
 // var configAuth = require('./auth')
 
 module.exports = function(app, passport) {
@@ -28,7 +31,7 @@ module.exports = function(app, passport) {
     passport.use(new FacebookStrategy({
       clientID: '833550933479237',
       clientSecret: '5fa5072baf46574bcf930bf0036e9bdd',
-      callbackURL: 'https://35.161.87.187/auth/facebook/callback', // What Facebook gets after the auth is done
+      callbackURL: 'https://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
       profileFields: ['id', 'displayName', 'email', 'gender', 'age_range']
     },
     function(accessToken, refreshToken, profile, done) {    // Saving the user
@@ -63,18 +66,127 @@ module.exports = function(app, passport) {
         console.log('Send the user from the FB login' + user);
         return done(null, user)
       }
-
       });
     }
   ));
 
+
+
+// Use the GoogleStrategy within Passport.
+passport.use(new GoogleStrategy({
+  clientID: '689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com',
+  clientSecret: 'DAK4sCyhHUTuyci1VbWRJ5Cb',
+  callbackURL: "https://localhost:8000/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+    // console.log(profile);
+    User.findOne({ email: profile._json.emails[0].value}).select('username password email').exec(function(err, user){
+      console.log("finding user");
+      console.log(user);
+      if (err) {
+        console.log('this the the err in mongoose:' + err);
+        return done(err);
+      }
+      if (!user){
+        console.log("new user..adding to db with google info");
+        var newUser = new User({
+          username: profile._json.displayName,
+          referer_id: profile._json.id,
+          gender: profile.gender,
+          age_range: profile._json.ageRange.min,
+          email: profile._json.emails[0].value,
+        })
+        console.log('This is the newUser:' + newUser);
+        newUser.save(function(err, user) {
+          if (user && user!= null){
+            return done(null, user)
+          } else {
+            console.log(err);
+            return done(err)
+          }
+        });
+      } // this is the end of the creating of new user
+    else {
+      console.log('Send the user from the Google login' + user);
+      return done(null, user)
+    }
+    });
+}
+));
+
+    passport.use(new LinkedInStrategy({
+    consumerKey: '86jprcssaojqdv',
+    consumerSecret: '2YbCMXdBtHD70rgi',
+    callbackURL: "https://localhost:8000/auth/linkedin/callback",
+    profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+    },
+    function(token, tokenSecret, profile, done) {
+      console.log(profile);
+    User.findOne({ email: profile._json.emailAddress}).select('username password email').exec(function(err, user){
+      console.log("finding user");
+      console.log(user);
+      if (err) {
+        console.log('this the the err in mongoose:' + err);
+        return done(err);
+      }
+      if (!user){
+        console.log("new user..adding to db with linkedin info");
+        var newUser = new User({
+          username: profile.displayName,
+          referer_id: profile.id,
+          email: profile._json.emailAddress,
+          // gender: profile.gender,
+          // age_range: profile._json.ageRange.min,
+        })
+        console.log('This is the newUser:' + newUser);
+        newUser.save(function(err, user) {
+          if (user && user!= null){
+            return done(null, user)
+          } else {
+            console.log(err);
+            return done(err)
+          }
+        });
+      } // this is the end of the creating of new user
+    else {
+      console.log('Send the user from the Linkedin login' + user);
+      return done(null, user)
+    }
+    });
+    }
+    ));
+
+    app.get('/auth/linkedin',
+      passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] })
+    );
+
+    app.get('/auth/linkedin/callback',
+      passport.authenticate('linkedin', { failureRedirect: '/' }),
+      function(request, response) {
+        // console.log('redirecting from linkedin', token);
+        return response.redirect('/mainpage/' + token);
+      });
+
+
+// Google Login Routes
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'profile', 'email'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/' }), function(request, response) {
+      console.log('redirecting to /mainpage/TOKEN from GOOGLE');
+
+    return response.redirect('/mainpage/' + token);
+  });
+
+
     // Facebook Login Routes
     app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-          failureRedirect: '/loginfailed' }), function(request, response){
+          failureRedirect: '/' }), function(request, response){
             // console.log("this is response");
             // console.log(response);
-            console.log('redirecting to /mainpage/TOKEN');
             return response.redirect('/mainpage/' + token); // What user is redirected to after auth is done
           });
 
