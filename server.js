@@ -14,7 +14,7 @@ var express = require("express");
 var path = require("path");
 var app = express();
 var bodyParser = require('body-parser');
-var multer = require('multer');
+// var multer = require('multer');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -53,7 +53,7 @@ require(path.join(__dirname,'./server/config/mongoose.js'));
 var routes_setter = require(path.join(__dirname,'./server/config/routes.js'));
 require('./server/config/passport')
 routes_setter(app, passport);
-
+// console.log(process.env);
 https.createServer(options, app).listen(process.env.PORT || 8000, function() {
   console.log("Smiota Store HTTPS at 8000");
 })

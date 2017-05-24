@@ -1,6 +1,6 @@
 // console.log("serverside user controller");
 var mongoose = require('mongoose');
-var Promise = require("bluebird");
+// var Promise = require("bluebird");
 
 // var http = require('http')
 var User = mongoose.model('User');

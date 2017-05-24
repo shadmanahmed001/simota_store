@@ -7,7 +7,7 @@ var User = require('../models/user');
 var session = require('express-session');
 var jwt = require('jsonwebtoken');
 var secret = 'shadman'
-var request = require('request')
+// var request = require('request')
 // var configAuth = require('./auth')
 
 module.exports = function(app, passport) {
