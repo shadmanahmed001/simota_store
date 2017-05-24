@@ -46,7 +46,7 @@ app.post("/charge", function(request, response){
   .then(customer =>
     stripe.charges.create({
       amount,
-      description: "Sample Charge",
+      description: "Smiota Store Workday",
       currency: "usd",
       customer: customer.id
     }))

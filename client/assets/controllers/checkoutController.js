@@ -33,22 +33,28 @@ Stripe.applePay.checkAvailability(function(available) {
 
 checkoutFactory.getOrder({"email": email}, function(data) {
   console.log('this is the getorder',data);
-  $scope.order = data
+  $scope.order = data;
+  var total = 0;
+  for (var i = 0; i< data.products.length; i++){
+    total = data.products[i].item.price + total
+    $scope.total = total
+  }
 })
 
 $scope.payButtonPressed = function() {
-  console.log('pay up sukka');
   beginApplePay();
   function beginApplePay() {
     var paymentRequest = {
       countryCode: 'US',
       currencyCode: 'USD',
       total: {
-        label: 'Stripe.com',
-        amount: '19.99' // make var for this total
+        label: 'Smiota Store Workday',
+        amount: String($scope.total) // make var for this total
       }
     };
     var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
+      console.log(paymentRequest);
+
       $http.post('/charges', { token: result.token.id }).done(function(){
         completion(ApplePaySession.STATUS_SUCCESS);
         // redirect to recipt page
@@ -62,6 +68,7 @@ $scope.payButtonPressed = function() {
     session.oncancel = function() {
       console.log("User hit the cancel button in the payment window");
     };
+    console.log('test');
     session.begin();
   }
   // $location.url('checkout')
