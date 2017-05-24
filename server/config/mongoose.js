@@ -6,7 +6,9 @@ var fs = require('fs');
 var path = require('path');
 // connect to mongoose!
 // mongoose.connect('mongodb://localhost/smiotastore');
-mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv');
+mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv', function() {
+  console.log('connected to mongo');
+});
 
 // mongoose.Promise = require('bluebird');
 
