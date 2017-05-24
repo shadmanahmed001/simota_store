@@ -1,5 +1,5 @@
 // console.log('checkoutController');
-app.controller('checkoutController', ['$scope', 'checkoutFactory', '$routeParams','$location', '$cookieStore', function($scope, checkoutFactory, $routeParams, $location, $cookieStore){
+app.controller('checkoutController', ['$scope', 'checkoutFactory', '$routeParams','$location', '$cookieStore', '$http', function($scope, checkoutFactory, $routeParams, $location, $cookieStore, $http){
 
 $scope.username = $cookieStore.get('username')
 var email = $cookieStore.get('email')
@@ -42,8 +42,10 @@ checkoutFactory.getOrder({"email": email}, function(data) {
 })
 
 $scope.payButtonPressed = function() {
+  console.log('debug1');
   beginApplePay();
   function beginApplePay() {
+    console.log('inside the begin pay');
     var paymentRequest = {
       countryCode: 'US',
       currencyCode: 'USD',
@@ -54,8 +56,8 @@ $scope.payButtonPressed = function() {
     };
     var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
       console.log(paymentRequest);
-
-      $http.post('/charges', { token: result.token.id }).done(function(){
+      console.log('here');
+      $http.post('/charges', { token: result.token.id, amount: $scope.total }).done(function(){
         completion(ApplePaySession.STATUS_SUCCESS);
         // redirect to recipt page
         $location.path('/recipt')
@@ -66,6 +68,7 @@ $scope.payButtonPressed = function() {
       console.log(error.message);
     });
     session.oncancel = function() {
+      console.log(session);
       console.log("User hit the cancel button in the payment window");
     };
     console.log('test');

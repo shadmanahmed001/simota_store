@@ -1,85 +1,40 @@
-<div class="section no-pad-bot" id="index-banner">
-
-  <!-- <script>
-  console.log("this is from inside the script");
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  };
-  var onFailure = function(error) {
-    console.log(error);
-  };
-
-  function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-  };
-
-  function renderButton() {
-gapi.signin2.render('my-signin2', {
-  'scope': 'profile email',
-  'width': 240,
-  'height': 50,
-  'longtitle': true,
-  'theme': 'dark',
-  'onsuccess': onSuccess,
-  'onfailure': onFailure
-});
-}
-</script> -->
-  <!-- Sign Out of Google -->
 
 
+<!-- <div class="section no-pad-bot" id="index-banner"> -->
+<h3 class="smiota-store">Smiota Store</h3>
 
-  <!-- <div class="container">
-    <br><br>
-    <h1>Login</h1>
-    <div class="row center">
-      <h5 class="header col s12 light">Get your groceries here!</h5>
-    </div>
-    <div class="row center">
-      <h5 class="header col s12 light">Sign up or Login in below to continue</h5>
-    </div>
-    <br><br>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  </div> -->
-  <!-- adding the form -->
+<div class="row steps">
 
-  <!-- <div class="row">
-  <form class="col s12" ng-submit="signupUser()">
-    <div class="row">
-      <div class="input-field col s6">
-        <input placeholder="First Name" id="first_name" type="text" ng-model="newUser.first_name" class="validate">
-        <label for="first_name">First Name</label>
-      </div>
-      <div class="input-field col s6">
-        <input id="last_name" type="text" class="validate" name="last_name" ng-model="newUser.first_name" placeholder="Last Name">
-        <label for="last_name">Last Name</label>
-      </div>
-    </div>
+</div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="email" type="email" name = "email"  class="validate">
-        <label for="email">Email</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" name = "password" class="validate">
-        <label for="password">Password</label>
-      </div>
-    </div>
-    <button class="btn waves-effect waves-light"   type="submit" name="action">Submit
-      <i class="material-icons right">send</i>
-    </button> -->
-  <!-- </form> -->
+<div class="row">
+  <div class="col s4 m6 l12">
+    <form method="get" action="/auth/facebook">
+      <button type="submit" class=" button-bg waves-effect waves-light ">Facebook</button>
+    </form>
+  </div>
+</div>
 
-  <a href="/auth/facebook" ><button>Facebook</button></a>
-  <a href="/auth/google" ><button>Google</button></a>
-  <a href="/auth/linkedin" ><button>LinkedIn</button></a>
+
+<div class="row">
+  <div class="col s4 ">
+    <form method="get" action="/auth/google">
+        <!-- took out btn -->
+      <button type="submit" class=" button-bg  waves-effect waves-light"><span class="google">Google</span></button>
+    </form>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col s4 ">
+    <form method="get" action="/auth/linkedin">
+      <button type="submit" class=" button-bg waves-effect waves-light">LinkedIn</button>
+    </form>
+  </div>
+</div>
+
+
 
 
 
@@ -88,4 +43,4 @@ gapi.signin2.render('my-signin2', {
 
 
 </footer>
-</div>
+<!-- </div> -->

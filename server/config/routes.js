@@ -18,7 +18,7 @@ var path = require('path')
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret = process.env.SECRET_KEY;
 
-const stripe = require("stripe")(keySecret);
+// const stripe = require("stripe")(keySecret);
 
 module.exports = function(app){
 
@@ -29,6 +29,25 @@ app.get('/edit/:id', function(request, response) {
   products.show(request, response);
 });
 
+app.post('/charges', function(request,response){
+  console.log('here at server');
+  // Set your secret key: remember to change this to your live secret key in production
+  // See your keys here: https://dashboard.stripe.com/account/apikeys
+  var stripe = require("stripe")("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
+  var token = request.body.token;
+  var chargeAmount = request.body.amount * 100;
+  // Charge the user's card:
+  var charge = stripe.charges.create({
+    amount: chargeAmount,
+    currency: "usd",
+    description: "Smiota Store Workday",
+    source: token,
+  }, function(err, charge) {
+
+    // asynchronously called
+  });
+
+})
 
 // this is where the stripe get method is going to go
 // need to send it to json so angualr has the info

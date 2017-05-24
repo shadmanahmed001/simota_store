@@ -54,9 +54,9 @@ var routes_setter = require(path.join(__dirname,'./server/config/routes.js'));
 require('./server/config/passport')
 routes_setter(app, passport);
 // console.log(process.env);
-// https.createServer(options, app).listen(process.env.PORT || 8000, function() {
-//   console.log("Smiota Store HTTPS at 8000");
-// })
-app.listen(8000, function() {
- console.log("Smiota Store HTTP at port 8000");
-});
+https.createServer(options, app).listen(process.env.PORT || 8000, function() {
+  console.log("Smiota Store HTTPS at 8000");
+})
+// app.listen(8000, function() {
+//  console.log("Smiota Store HTTP at port 8000");
+// });

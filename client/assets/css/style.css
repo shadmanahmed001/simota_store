@@ -1,13 +1,13 @@
-a {
+/*a {
   color: black
-}
+}*/
 
-::-webkit-input-placeholder {
+/*::-webkit-input-placeholder {
   color:red;
   text-align: center;
-}
+}*/
 
-.scroll{
+/*.scroll{
   overflow: scroll;
   height: 80%
 }
@@ -43,9 +43,9 @@ a {
   font-family: roboto;
   font-style: italic;
   font-size: 25px;
-}
+}*/
 
-.message_pop {
+/*.message_pop {
   background-color: lightgrey;
   padding: 5px;
   border-radius: 5px;
@@ -55,4 +55,75 @@ a {
   width: 250px;
   text-align: center;
   display: inline !important;
+}*/
+#apple-pay-button {
+  /*display: none;*/
+  background-color: black;
+  background-image: -webkit-named-image(apple-pay-logo-white);
+  background-size: 100% 100%;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 44px;
+  padding: 10px 0;
+  border-radius: 10px;
 }
+.smiota-store {
+	height: 29px;
+	width: 164px;
+	color: #000000;
+	font-family: Raleway;
+	font-size: 24px;
+	font-weight: 300;
+	letter-spacing: 2px;
+	line-height: 29px;
+}
+
+.button-bg {
+	height: 36px;
+	width: 260px;
+	border-radius: 2px;
+	background-color: #00BBD3;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+}
+.facebook {
+	height: 16px;
+	width: 66px;
+	color: #FFFFFF;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: center;
+}
+.google {
+	height: 16px;
+	width: 48px;
+	color: #FFFFFF;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: center;
+}
+.linked-in {
+	height: 16px;
+	width: 58px;
+	color: #FFFFFF;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: center;
+}
+
+.steps{
+	height: 59px;
+	width: 235px;
+  border: 1px solid black
+}
+
+
+
+
+/*end of file*/
