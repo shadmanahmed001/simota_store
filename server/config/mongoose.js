@@ -5,7 +5,9 @@ var fs = require('fs');
 // require path for getting the models path
 var path = require('path');
 // connect to mongoose!
-mongoose.connect('mongodb://localhost/smiotastore');
+// mongoose.connect('mongodb://localhost/smiotastore');
+mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv');
+
 mongoose.Promise = require('bluebird');
 
 // create a variable that points to the path where all of the models live
