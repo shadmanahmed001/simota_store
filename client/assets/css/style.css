@@ -69,58 +69,63 @@
   border-radius: 10px;
 }
 .smiota-store {
-	height: 29px;
-	width: 164px;
+	/*height: 1.625em;*/
+	/*width: 10.25em;*/
 	color: #000000;
 	font-family: Raleway;
-	font-size: 24px;
+	font-size: 1.5em;
 	font-weight: 300;
-	letter-spacing: 2px;
-	line-height: 29px;
+	letter-spacing: 0.125em;
+	line-height: 1.8em;
 }
-
+.steps {
+	height: 24px;
+	/*width: 48px;*/
+	color: rgba(0,0,0,0.54);
+	font-family: Roboto;
+	font-size: 1em;
+	line-height: 24px;
+	text-align: center;
+  margin-top: 0px;
+}
 .button-bg {
 	height: 36px;
 	width: 260px;
+  /*width: auto;*/
 	border-radius: 2px;
 	background-color: #00BBD3;
 	box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
 }
 .facebook {
-	height: 16px;
-	width: 66px;
+	height: 1em;
+	width: 4.12em;
 	color: #FFFFFF;
 	font-family: Roboto;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 16px;
+	font-size: 1em;
+	font-weight: 400;
+  /*font-weight: was 500*/
+	line-height: 1em;
 	text-align: center;
 }
 .google {
-	height: 16px;
-	width: 48px;
+	height: 1em;
+	width: 3em;
 	color: #FFFFFF;
 	font-family: Roboto;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 16px;
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 1em;
 	text-align: center;
 }
 .linked-in {
-	height: 16px;
-	width: 58px;
+	height: 1em;
+	width: 3.625em;
 	color: #FFFFFF;
 	font-family: Roboto;
-	font-size: 14px;
+	font-size: .875em;
 	font-weight: 500;
-	line-height: 16px;
+	line-height: 1em;
 	text-align: center;
-}
-
-.steps{
-	height: 59px;
-	width: 235px;
-  border: 1px solid black
 }
 
 
