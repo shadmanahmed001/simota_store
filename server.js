@@ -1,6 +1,8 @@
 
 var fs = require('fs');
 var https = require('https')
+var http = require('http')
+
 var sskey = fs.readFileSync('key.pem');
 var sscert = fs.readFileSync('cert.pem')
 
@@ -42,7 +44,6 @@ app.set("view engine", "pug");
 // ************
 app.use(express.static('bower_components'))
 app.use(bodyParser.json())
-app.enable('trust proxy')
 
 // app.use(multer( {dest: './uploads/',
 //   rename: function (fieldname, filename){
@@ -56,9 +57,13 @@ require('./server/config/passport')
 routes_setter(app, passport);
 // console.log(process.env);
 
-https.createServer(options, app).listen(process.env.PORT || 8000, function() {
-  console.log("Smiota Store HTTPS at 8000");
+https.createServer(app).listen(process.env.PORT || 8000, function() {
+    console.log(process.env.PORT);
 })
+//
+// https.createServer(options, app).listen(process.env.PORT || 8000, function() {
+//   console.log(process.env.PORT);
+// })
 // app.listen(8000, function() {
 //  console.log("Smiota Store HTTP at port 8000");
 // });
