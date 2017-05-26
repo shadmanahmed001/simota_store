@@ -57,7 +57,7 @@ require('./server/config/passport')
 routes_setter(app, passport);
 // console.log(process.env);
 
-https.createServer(app).listen(process.env.PORT || 8000, function() {
+http.createServer(app).listen(process.env.PORT || 8000, function() {
     console.log(process.env.PORT);
 })
 //
