@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
   email: { type: String},
   username: { type: String },
   picture_link: { type: String },
-  referer_id: { type: Number },
+  referer_id: { type: String },
   gender: { type: String },
   age_range: { type: String },
   orders: [],
