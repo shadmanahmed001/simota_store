@@ -99,7 +99,7 @@ function(accessToken, refreshToken, profile, done) {
           email: profile._json.emails[0].value,
         });
       //   if (profile._json.ageRange.min){
-      //   age_range: profile._json.ageRange.min
+      //   newUser.age_range: profile._json.ageRange.min
       // };
         console.log('This is the newUser:' + newUser);
         newUser.save(function(err, user) {
