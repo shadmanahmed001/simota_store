@@ -1,6 +1,7 @@
 
 var fs = require('fs');
 var https = require('https')
+var http = require('http')
 var sskey = fs.readFileSync('key.pem');
 var sscert = fs.readFileSync('cert.pem')
 
@@ -53,9 +54,13 @@ require(path.join(__dirname,'./server/config/mongoose.js'));
 var routes_setter = require(path.join(__dirname,'./server/config/routes.js'));
 require('./server/config/passport')
 routes_setter(app, passport);
-// console.log(process.env);
-https.createServer(options, app).listen(process.env.PORT || 8000, function() {
-  console.log("Smiota Store HTTPS at 8000");
+
+// https.createServer(options, app).listen(process.env.PORT || 8000, function() {
+//   console.log("Smiota Store HTTPS at 8000");
+// });
+
+http.createServer(app).listen(process.env.PORT || 8000, function() {
+    console.log(process.env.PORT);
 })
 // app.listen(8000, function() {
 //  console.log("Smiota Store HTTP at port 8000");
