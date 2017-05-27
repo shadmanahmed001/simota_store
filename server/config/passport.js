@@ -98,9 +98,9 @@ function(accessToken, refreshToken, profile, done) {
           gender: profile.gender,
           email: profile._json.emails[0].value,
         });
-        if (profile._json.ageRange.min){
-        age_range: profile._json.ageRange.min
-      };
+      //   if (profile._json.ageRange.min){
+      //   age_range: profile._json.ageRange.min
+      // };
         console.log('This is the newUser:' + newUser);
         newUser.save(function(err, user) {
           if (user && user!= null){
