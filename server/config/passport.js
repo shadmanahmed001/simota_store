@@ -96,9 +96,11 @@ function(accessToken, refreshToken, profile, done) {
           username: profile._json.displayName,
           referer_id: profile._json.id,
           gender: profile.gender,
-          age_range: profile._json.ageRange.min,
           email: profile._json.emails[0].value,
-        })
+        });
+        if (profile._json.ageRange.min){
+        age_range: profile._json.ageRange.min
+      };
         console.log('This is the newUser:' + newUser);
         newUser.save(function(err, user) {
           if (user && user!= null){
