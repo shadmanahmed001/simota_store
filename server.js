@@ -62,7 +62,7 @@ routes_setter(app, passport);
 // });
 
 http.createServer(app).listen(process.env.PORT || 8000, function() {
-    console.log(process.env.PORT);
+    console.log('Smiota Store at:', process.env.PORT);
 });
 
 

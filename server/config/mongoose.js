@@ -4,15 +4,14 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 // require path for getting the models path
 var path = require('path');
-// connect to mongoose!
-// mongoose.connect('mongodb://localhost/smiotastore', function()  {
-//   console.log('at LOCALHOST DB');
-// });
-mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv', function() {
-  console.log('connected to mongo');
-});
 
-// mongoose.Promise = require('bluebird');
+mongoose.connect('mongodb://localhost/smiotastore', function()  {
+  console.log('at LOCALHOST DB');
+});
+// mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv', function() {
+//   console.log('connected to mongo');
+// });
+
 
 // create a variable that points to the path where all of the models live
 var models_path = path.join(__dirname, './../models');

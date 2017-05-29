@@ -7,5 +7,4 @@ mainFactory.facebook($routeParams.token);
   // Sending the user to the products page
   $location.path('/all')
 
-  // send the token to back and get username and email to store in fac
 }]);

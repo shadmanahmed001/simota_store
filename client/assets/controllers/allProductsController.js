@@ -2,7 +2,6 @@
 app.controller('allProductsController', ['$scope','productsFactory','$routeParams', '$cookieStore', '$location', function($scope, productsFactory, $routeParams, $cookieStore, $location) {
 
 
-
 //   var CheckingUser = function () {
 //   if (!$cookieStore.get('email')) {
 //     console.log("Not Logged In");

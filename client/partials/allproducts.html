@@ -1,51 +1,74 @@
 
-
-<div ng-controller = "allProductsController">
-
-  <script
+<div>
+  <!-- <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
+  <script>
+    $( document ).ready(function(){
+      $(".button-collapse").sideNav();
+    })
+  </script>
 
 
-<h3>Hi, {{ username }}</h3>
-<h5>NAV go here</h5>
+<nav class="nav-extended" style="background-color: #00BBD3;">
+  <div class="nav-wrapper">
+    <!-- <a href="#!/all" class="brand-logo right"><span class="smiota-store-workd">Smiota Store | Workday</span></a> -->
+
+    <span class="smiota-store-workd">Smiota Store | Workday</span>
+
+    <a href="#!/cart" style="display: inline-block;"class="right-align"> <i class="material-icons">search</i></a>
+
+    <a href="#!/cart" style="display: inline-block;"class="right-align"> <i class="material-icons">shopping_cart</i></a>
+
+
+    <a href="#" data-activates="side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#!/orders">My Orders</a></li>
+      <li><a href="#!/account">My Account</a></li>
+    </ul>
+    <ul class="side-nav" id="side-menu">
+      <li><a href="#!/orders">My Orders</a></li>
+      <li>><a href="#!/account">My Account</a></li>
+    </ul>
+  </div>
+
+
+  <div class="nav-content">
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a class="active" href="#availablenow"><span class="available-now">Availabe Now</span></a></li>
+      <li class="tab"><a href="#orderforlater">Order for Later</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<label>Search: <input type="text" placeholder="Search Products/ Brands/ Descriptions/ anything you want" ng-model="filter_name"></label>
+
+<div id="availablenow" class="col s12">Availabe Now
 <h5><a href="#!/cart">See Your Cart</a></h5>
-<h4>These are all our products</h4>
-<table ng-if = "products">
-  <h2>You can search also</h2><label>Search: <input type="text" placeholder="Search Products/ Brands/ Descriptions/ anything you want" ng-model="filter_name"></label>
-   <tr>
-     <th>Product Index</th>
-     <th>Product Name</th>
-     <th>Product Description</th>
-     <th>Product Image</th>
-     <th>Product Price</th>
-     <th>Others Price</th>
-     <th>In Stock</th>
+  <table ng-if = "products">
+     <tr>
+       <th>Product Index</th>
+       <th>Product Name</th>
+       <th>Product Description</th>
+       <th>Product Image</th>
+       <th>Product Price</th>
+       <th>Others Price</th>
+       <th>In Stock</th>
+     </tr>
+     <tr ng-repeat = "product in products | filter: filter_name">
+       <td> <span ng-bind="product.name"></span> </td>
+       <td> <span ng-bind="product.description"></span> </td>
+       <td><img src="{{product.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
+       <td> $<span ng-bind="product.price"></span> </td>
+       <td> $<span ng-bind="product.others_price"></span> </td>
+       <td><span ng-bind="product.quantity"></span> </td>
+       <td><a href="#!/show/{{product._id}}">See Item</a></td>
+     </tr>
+   </table>
+</div>
+<!-- Available Now -->
 
-   </tr>
-   <tr ng-repeat = "product in products | filter: filter_name">
-     <td> <span ng-bind="product.name"></span> </td>
-     <td> <span ng-bind="product.description"></span> </td>
-     <td><img src="{{product.image}}" class="auto-img border" style="width: 25%; height: 25%;"></td>
-     <td> $<span ng-bind="product.price"></span> </td>
-     <td> $<span ng-bind="product.others_price"></span> </td>
-     <td><span ng-bind="product.quantity"></span> </td>
-     <!-- <td>Choose your quantity<input type="number" min="1" max="5" ng-model="selectedQuantity"></td> -->
-
-       <!-- HAVE SOMETHING TO LET USER PICK QUANTITY -->
-         <!-- <select>
-         <option>Choose your quantity</option>
-       </select> -->
-
-
- <!-- <td><button ng-click = 'addToCart(product)'>Add to Cart</button></td> -->
-
- <td><a href="#!/show/{{product._id}}">See Item</a></td>
-
-
-
-
-   </tr>
- </table>
+<div id="orderforlater" class="col s12">Order for Later</div>
 </div>

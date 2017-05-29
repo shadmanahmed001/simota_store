@@ -127,8 +127,26 @@
 	line-height: 1em;
 	text-align: center;
 }
-
-
+.smiota-store-workd {
+	height: 16px;
+	width: 186px;
+	color: #FFFFFF;
+	font-family: Raleway;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 16px;
+}
+.available-now {
+	height: 16px;
+	width: 120px;
+	color: #FFFFFF;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: center;
+}
 
 
 /*end of file*/
