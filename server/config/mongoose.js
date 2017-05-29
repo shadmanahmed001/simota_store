@@ -5,12 +5,12 @@ var fs = require('fs');
 // require path for getting the models path
 var path = require('path');
 
-mongoose.connect('mongodb://localhost/smiotastore', function()  {
-  console.log('at LOCALHOST DB');
-});
-// mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv', function() {
-//   console.log('connected to mongo');
+// mongoose.connect('mongodb://localhost/smiotastore', function()  {
+//   console.log('at LOCALHOST DB');
 // });
+mongoose.connect('mongodb://heroku_xfr7nsnv:f57n3v8oisiv119csqav47u518@ds151141.mlab.com:51141/heroku_xfr7nsnv', function() {
+  console.log('connected to mongo');
+});
 
 
 // create a variable that points to the path where all of the models live
