@@ -30,8 +30,8 @@ module.exports = function(app, passport) {
 
     passport.use(new FacebookStrategy({
       clientID: '833550933479237',
-      clientSecret: '5fa5072baf46574bcf930bf0036e9bdd',
-      // callbackURL: 'https://smiota-store.herokuapp.com/auth/facebook/callback', // What Facebook gets after the auth is done
+      // clientSecret: '5fa5072baf46574bcf930bf0036e9bdd',
+      callbackURL: 'https://smiota-store.herokuapp.com/auth/facebook/callback', // What Facebook gets after the auth is done
 
       callbackURL: 'https://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
       profileFields: ['id', 'displayName', 'email', 'gender', 'age_range']
@@ -78,8 +78,8 @@ module.exports = function(app, passport) {
 passport.use(new GoogleStrategy({
   clientID: '689577300744-g8rvm6bf9qijn39oqe6l3ofod5njmprc.apps.googleusercontent.com',
   clientSecret: 'DAK4sCyhHUTuyci1VbWRJ5Cb',
-  // callbackURL: "https://smiota-store.herokuapp.com/auth/google/callback"
-  callbackURL: "https://localhost:8000/auth/google/callback"
+  callbackURL: "https://smiota-store.herokuapp.com/auth/google/callback"
+  // callbackURL: "https://localhost:8000/auth/google/callback"
 },
 function(accessToken, refreshToken, profile, done) {
     // console.log(profile);
@@ -122,8 +122,8 @@ function(accessToken, refreshToken, profile, done) {
     passport.use(new LinkedInStrategy({
     consumerKey: '86jprcssaojqdv',
     consumerSecret: '2YbCMXdBtHD70rgi',
-    // callbackURL: "https://smiota-store.herokuapp.com/auth/linkedin/callback",
-    callbackURL: "https://localhost:8000/auth/linkedin/callback",
+    callbackURL: "https://smiota-store.herokuapp.com/auth/linkedin/callback",
+    // callbackURL: "https://localhost:8000/auth/linkedin/callback",
     profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
     },
     function(token, tokenSecret, profile, done) {
