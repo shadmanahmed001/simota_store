@@ -192,19 +192,20 @@
   display: block;
 }
 /*For the shopping cart button and search*/
+/*iphone 5 or less*/
 @media screen and (max-width: 320px) {
   .searchBar {
-      display: inline-block;
-      height: auto;
-       width: none;
-       margin-left: none;
-       }
+    display: inline-block;
+    height: auto;
+     width: none;
+     margin-left: none;
+     }
 }
 @media screen and (min-width: 375px) {
   .searchBar {
     display: inline-block;
-    height:auto;
-    width:9.3em;
+    height: auto;
+    width: 9.3em;
     margin-left: -1.43em;
   }
 }
