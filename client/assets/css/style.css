@@ -128,14 +128,17 @@
 	text-align: center;
 }
 .smiota-store-workd {
-	height: 16px;
-	width: 186px;
+	height: 1em;
+	/*width: 11.6em;*/
+  margin-top: 20px;
 	color: #FFFFFF;
 	font-family: Raleway;
-	font-size: 14px;
+	font-size: 1em;
 	font-weight: bold;
 	letter-spacing: 1px;
-	line-height: 16px;
+	line-height: 1em;
+  display: inline-block;
+  vertical-align: top;
 }
 .available-now {
 	height: 16px;
@@ -147,6 +150,45 @@
 	line-height: 16px;
 	text-align: center;
 }
-
-
+.tabs .tab {
+  text-transform:none !important;
+}
+.tabs.tabs-transparent .indicator {
+  background-color: #1B2430 !important;
+}
+.products {
+  display: inline-block;
+  vertical-align: top;
+  width: auto;
+  height: auto;
+  margin-left: 16px;
+}
+.productName {
+	height: 24px;
+	width: auto;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 16px;
+	line-height: 24px;
+  margin-top: 2px;
+}
+.productDesc {
+	height: 20px;
+	width: auto;
+	color: rgba(0,0,0,0.54);
+	font-family: Roboto;
+	font-size: 14px;
+	line-height: 20px;
+  margin: 0px;
+}
+.productPrice {
+	height: 24px;
+	width: auto;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 16px;
+	line-height: 24px;
+  margin: 0px;
+  display: block;
+}
 /*end of file*/

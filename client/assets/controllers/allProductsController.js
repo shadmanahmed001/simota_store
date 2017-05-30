@@ -18,6 +18,8 @@ app.controller('allProductsController', ['$scope','productsFactory','$routeParam
 
 $scope.username = $cookieStore.get('username')
 
+
+
   productsFactory.index(function(data) {
   $scope.products = data;
   })
@@ -52,6 +54,10 @@ $scope.addToCart = function(product) {
     });
   }
 
+// jQuery
+$(".button-collapse").sideNav();
 
 
+
+// end of the controller
 }]);

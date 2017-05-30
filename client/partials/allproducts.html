@@ -1,53 +1,75 @@
 
-<div>
-  <!-- <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script> -->
-  <script>
-    $( document ).ready(function(){
-      $(".button-collapse").sideNav();
-    })
-  </script>
 
 
-<nav class="nav-extended" style="background-color: #00BBD3;">
-  <div class="nav-wrapper">
-    <!-- <a href="#!/all" class="brand-logo right"><span class="smiota-store-workd">Smiota Store | Workday</span></a> -->
 
-    <span class="smiota-store-workd">Smiota Store | Workday</span>
+<!-- NAV -->
+<nav class="nav-extended" style="background-color: #00BBD3; width:100%;">
 
-    <a href="#!/cart" style="display: inline-block;"class="right-align"> <i class="material-icons">search</i></a>
-
-    <a href="#!/cart" style="display: inline-block;"class="right-align"> <i class="material-icons">shopping_cart</i></a>
+   <div class="nav-wrapper">
+     <p class="smiota-store-workd">Smiota Store | Workday</p>
 
 
-    <a href="#" data-activates="side-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#!/orders">My Orders</a></li>
-      <li><a href="#!/account">My Account</a></li>
-    </ul>
-    <ul class="side-nav" id="side-menu">
-      <li><a href="#!/orders">My Orders</a></li>
-      <li>><a href="#!/account">My Account</a></li>
-    </ul>
+
+     <div class="right-align" style="display:inline-block; height:auto; width:9.3em; margin-left: -1.43em;">
+
+     <a href="#!/cart" style="display: inline-block;"> <i class="material-icons ">search</i></a>
+
+     <a href="#!/cart" style="display: inline-block; margin-left: 1.70em;"> <i class="material-icons">shopping_cart</i></a>
+    </div>
+
+     <!-- <a href="#" class="brand-logo">Logo</a> -->
+     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="#!/orders">My Orders</a></li>
+       <li><a href="#!/account">My Account</a></li>
+     </ul>
+     <ul class="side-nav" id="mobile-demo">
+       <li><a href="#!/orders">My Orders</a></li>
+       <li><a href="#!/account">My Account</a></li>
+     </ul>
+   </div>
+
+   <div class="nav-content">
+     <ul class="tabs tabs-transparent">
+       <li class="tab"><a class="active now" href="#now">Available Now</a></li>
+       <li class="tab"><a  href="#later">Order for Later</a></li>
+     </ul>
+   </div>
+ </nav>
+ <!-- END OF NAV -->
+<div class="container">
+
+<!-- <label>Search: <input type="text" placeholder="Search Products/ Brands/ Descriptions/ anything you want" ng-model="filter_name"></label> -->
+
+<div id="now" class="col s12 m4 l4">
+
+  <div ng-repeat = "product in products | filter: filter_name" class="row" style="margin-top: 20px;">
+
+    <div style="display: inline-block;">
+      <img src="{{product.image}}" class="responsive-img" style="height: 80px; width: 80px; margin-left: 1.15em;">
+    </div>
+
+    <div style="display: inline-block; height: 100%; width: 70%" >
+      <p class="productName products"><span ng-bind="product.name"></span></p><br>
+      <p class="productDesc products"><span ng-bind="product.description"></span></p>
+      <p class="productPrice products">$<span ng-bind="product.price"></span></p>
+      <!-- <span class="productName right-align products" ng-bind="product.name"></span> -->
+    </div>
+
+    <div class="divider"></div>
+
   </div>
 
 
-  <div class="nav-content">
-    <ul class="tabs tabs-transparent">
-      <li class="tab"><a class="active" href="#availablenow"><span class="available-now">Availabe Now</span></a></li>
-      <li class="tab"><a href="#orderforlater">Order for Later</a></li>
-    </ul>
-  </div>
-</nav>
+</div>
 
 
-<label>Search: <input type="text" placeholder="Search Products/ Brands/ Descriptions/ anything you want" ng-model="filter_name"></label>
+</div>
 
-<div id="availablenow" class="col s12">Availabe Now
-<h5><a href="#!/cart">See Your Cart</a></h5>
-  <table ng-if = "products">
+
+
+
+  <!-- <table ng-if = "products">
      <tr>
        <th>Product Index</th>
        <th>Product Name</th>
@@ -66,9 +88,11 @@
        <td><span ng-bind="product.quantity"></span> </td>
        <td><a href="#!/show/{{product._id}}">See Item</a></td>
      </tr>
-   </table>
-</div>
-<!-- Available Now -->
+   </table> -->
 
-<div id="orderforlater" class="col s12">Order for Later</div>
-</div>
+
+
+
+   <div id="later" class="col s12">
+     This is the div that all the Order for Later come into
+   </div>
