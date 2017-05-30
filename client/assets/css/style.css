@@ -191,4 +191,21 @@
   margin: 0px;
   display: block;
 }
+/*For the shopping cart button and search*/
+@media screen and (max-width: 320px) {
+  .searchBar {
+      display: inline-block;
+      height: auto;
+       width: none;
+       margin-left: none;
+       }
+}
+@media screen and (min-width: 375px) {
+  .searchBar {
+    display: inline-block;
+    height:auto;
+    width:9.3em;
+    margin-left: -1.43em;
+  }
+}
 /*end of file*/
