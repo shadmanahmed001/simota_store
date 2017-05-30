@@ -192,8 +192,8 @@
   display: block;
 }
 /*For the shopping cart button and search*/
-/*iphone 5 or less*/
-@media screen and (max-width: 320px) {
+/*iphone 5s or less*/
+@media screen and (max-width: 319px) {
   .searchBar {
     display: inline-block;
     height: auto;

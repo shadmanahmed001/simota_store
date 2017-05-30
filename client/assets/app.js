@@ -43,9 +43,9 @@ app.config(function ($routeProvider) {
     templateUrl: 'partials/revieworder.html',
     controller : 'checkoutController'
   })
-  .otherwise({
-    redirectTo: '/'
-  })
+  // .otherwise({
+  //   redirectTo: '/'
+  // })
 });
 
 app.config(function($httpProvider) {
