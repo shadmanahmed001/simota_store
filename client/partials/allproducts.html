@@ -12,7 +12,10 @@
 
      <div class="right-align searchBar">
 
-     <a href="#!/cart" style="display: inline-block;"> <i class="material-icons ">search</i></a>
+     <!-- <a class="dropdown-button" href="#" data-activates="dropdown1" style="display: inline-block;"> <i class="material-icons ">search</i></a> -->
+
+   <button class="searchToggle" style="display: inline-block;"> <i class="material-icons ">search</i></button>
+
 
      <a href="#!/cart" style="display: inline-block; margin-left: 1.70em;"> <i class="material-icons">shopping_cart</i></a>
     </div>
@@ -36,31 +39,35 @@
        <li class="tab"><a href="#later">Order for Later</a></li>
      </ul>
    </div>
+
  </nav>
  <!-- END OF NAV -->
+
 <div class="container">
 
-<!-- <label>Search: <input type="text" placeholder="Search Products/ Brands/ Descriptions/ anything you want" ng-model="filter_name"></label> -->
+<div class="row" style="display: none" id="searchDiv">
+  <label>Search: <input type="text" placeholder="Search for items" ng-model="filter_name"></label>
+</div>
+
 
 <div id="now" class="col s12 m4 l4">
 
   <div ng-repeat = "product in products | filter: filter_name" class="row" style="margin-top: 20px;">
-
     <div style="display: inline-block;">
       <img src="{{product.image}}" class="responsive-img" style="height: 80px; width: 80px; margin-left: 1.15em;">
     </div>
-
-    <div style="display: inline-block; height: 100%; width: 70%" >
+    <div style="display: inline-block; height: 100%; width: auto" >
       <p class="productName products"><span ng-bind="product.name"></span></p><br>
       <p class="productDesc products"><span ng-bind="product.description"></span></p>
       <p class="productPrice products">$<span ng-bind="product.price"></span></p>
-      <!-- <span class="productName right-align products" ng-bind="product.name"></span> -->
     </div>
+    <!-- <div class="col s3 offset-s9 addToCartBtn" >
+      <span class="add-to-cart">Add to Cart</span>
+    </div> -->
+    <!-- <button type="button" class="addToCartBtn"><span class="add-to-cart">Add to Cart</span></button> -->
 
     <div class="divider"></div>
-
   </div>
-
 
 </div>
 

@@ -56,6 +56,12 @@ $scope.addToCart = function(product) {
 
 // jQuery
 $(".button-collapse").sideNav();
+$(".searchToggle").click(function() {
+  $("#searchDiv").slideToggle( "slow" );
+});
+
+
+
 
 
 

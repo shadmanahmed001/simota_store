@@ -180,6 +180,8 @@
 	font-size: 14px;
 	line-height: 20px;
   margin: 0px;
+  margin-left: 16px;
+  margin-top: -14px;
 }
 .productPrice {
 	height: 24px;
@@ -190,6 +192,8 @@
 	line-height: 24px;
   margin: 0px;
   display: block;
+  margin-left: 16px;
+  margin-bottom: 10px;
 }
 /*For the shopping cart button and search*/
 /*iphone 5s or less*/
@@ -209,4 +213,62 @@
     margin-left: -1.43em;
   }
 }
+.searchToggle {
+  background: none!important;
+  color: inherit;
+  border: none;
+  padding: 0!important;
+  font: inherit;
+  cursor: pointer;
+}
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #00BBD3 !important;
+    box-shadow: 0 1px 0 0 #00BBD3 !important;
+}
+.addToCartBtn {
+  display: inline-block;
+  border: 1px solid black;
+  margin-bottom: 1.25em;
+	height: 5%;
+	width: 30%;
+	border-radius: 0.125em;
+	background-color: #00BBD3;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+}
+.add-to-cart {
+	height: 16px;
+	width: 77px;
+	color: #FFFFFF;
+	font-family: Roboto;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*end of file*/
