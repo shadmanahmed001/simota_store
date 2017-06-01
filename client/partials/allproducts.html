@@ -56,15 +56,31 @@
     <div style="display: inline-block;">
       <img src="{{product.image}}" class="responsive-img" style="height: 80px; width: 80px; margin-left: 1.15em;">
     </div>
-    <div style="display: inline-block; height: 100%; width: auto" >
+    <div style="display: inline-block; height: 100%; width: auto;" >
       <p class="productName products"><span ng-bind="product.name"></span></p><br>
       <p class="productDesc products"><span ng-bind="product.description"></span></p>
       <p class="productPrice products">$<span ng-bind="product.price"></span></p>
+
     </div>
-    <!-- <div class="col s3 offset-s9 addToCartBtn" >
-      <span class="add-to-cart">Add to Cart</span>
-    </div> -->
-    <!-- <button type="button" class="addToCartBtn"><span class="add-to-cart">Add to Cart</span></button> -->
+
+    <!-- <span class="quantityLeft" ng-bind="quantityLeft"></span> -->
+
+
+
+
+    <div style="display: inline-block;">
+    <button type="button" id="add{{product._id}}" class="addToCartBtn" ng-click = "addToCart(product, quantity)"><span class="add-to-cart">Add to Cart</span></button>
+
+
+    <div class="buttonchange{{product._id}}" style="display: none; margin: 0px;">
+      <button ng-click="minus(product)" class="changebtns add-to-cart" style="margin-right: .75em; "><i class=" material-icons" style="margin-left: -1px; margin-bottom: -1px;">remove</i></button>
+      {{ countVal }}
+      <button  ng-click="add(product)" class="changebtns add-to-cart" style="margin-left: .75em;"><i class=" material-icons">add</i></button>
+    </div>
+
+
+
+  </div>
 
     <div class="divider"></div>
   </div>

@@ -227,25 +227,37 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 }
 .addToCartBtn {
   display: inline-block;
-  border: 1px solid black;
   margin-bottom: 1.25em;
-	height: 5%;
-	width: 30%;
+	height: 2.6em;
+  /*height: 36px;*/
+	width: 7.7em;
+  /*width: 109px;*/
 	border-radius: 0.125em;
 	background-color: #00BBD3;
 	box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
 }
 .add-to-cart {
-	height: 16px;
-	width: 77px;
+	height: 1.15em;
+	width: 5.5em;
 	color: #FFFFFF;
 	font-family: Roboto;
-	font-size: 14px;
-	font-weight: 500;
-	line-height: 16px;
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 1.15em;
 	text-align: center;
 }
-
+.changebtns {
+  height: 2.6em;
+  width: 2.6em;
+  border-radius: 2px;
+	background-color: #00BBD3;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+  margin-bottom: 1.25em;
+}
+.quantityLeft {
+  vertical-align: top;
+  display: inline-block;
+}
 
 
 
