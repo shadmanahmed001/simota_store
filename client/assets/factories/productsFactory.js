@@ -55,7 +55,12 @@ factory.addToCart =  function(userEmailWithProductQuantity, callback) {
   })
 }
 
-
+factory.usercart = function(email, callback) {
+    $http.post('/usercart', email).then(function(returned_data){
+      console.log("getting logged in user cart", returned_data.data);
+      callback(returned_data.data);
+    });
+}
 
 
 

@@ -43,6 +43,10 @@ app.config(function ($routeProvider) {
     templateUrl: 'partials/revieworder.html',
     controller : 'checkoutController'
   })
+  .when('/signout', {
+    templateUrl: 'partials/signout.html',
+    controller : 'signoutController'
+  })
   .otherwise({
     redirectTo: '/'
   })

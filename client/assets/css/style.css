@@ -159,17 +159,17 @@
 .products {
   display: inline-block;
   vertical-align: top;
-  width: auto;
-  height: auto;
+  /*width: auto;
+  height: auto;*/
   margin-left: 16px;
 }
 .productName {
-	height: 24px;
+	height: 1.7em;
 	width: auto;
 	color: rgba(0,0,0,0.87);
 	font-family: Roboto;
-	font-size: 16px;
-	line-height: 24px;
+	font-size: 1.15em;
+	line-height: 1.7em;
   margin-top: 2px;
 }
 .productDesc {
@@ -245,6 +245,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 	font-weight: 400;
 	line-height: 1.15em;
 	text-align: center;
+  /*margin-left: -5px;*/
+
 }
 .changebtns {
   height: 2.6em;
@@ -259,23 +261,121 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
   display: inline-block;
 }
 
+.cart-1-item {
+	height: 2.3em;
+	width: 9.6em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.7em;
+	line-height: 2.3em;
+  /*margin-top: 1.7em;*/
+}
+.cart_texts {
+	height: 1.4em;
+	/*width: 32px;*/
+	color: rgba(0,0,0,0.54);
+	font-family: Roboto;
+	font-size: 1em;
+	line-height: 1.4em;
+  margin: .43em;
+}
+.total {
+	/*height: 1.7em;*/
+	/*width: 3em;*/
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.15em;
+	line-height: 1.7em;
+  margin-right: .43em;
+}
+.payBtn {
+  /*border: 1px solid black;*/
+	height: 2.6em;
+	width: 11.5em;
+	border-radius: .15em;
+	background-color: #00BBD3;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24);
+}
+.pay-with-apply-pay {
+	height: 1.15em;
+	width: 9em;
+	color: #FFFFFF;
+	font-family: Roboto;
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 1.15em;
+	text-align: center;
+}
+.all-items-are-availa {
+	height: 2em;
+	width: 24.6em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.4em;
+	font-weight: 400;
+	line-height: 2em;
+}
+.removeItem {
+	height: auto;
+	width: auto;
+	color: #00BBD3;
+	font-family: Roboto;
+	font-size: 1.15em;
+	line-height: 1.35em;
+}
 
+.cartItemPrice {
+  height: 24px;
+  width: auto;
+  color: rgba(0,0,0,0.87);
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0px;
+  /*display: block;*/
+  /*margin-left: 16px;*/
+  margin-bottom: 10px;
+}
+.location {
+	height: 28px;
+	width: 345px;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 28px;
+}
+.workday-bldg-2 {
+	height: 24px;
+	width: 110px;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 16px;
+	line-height: 24px;
+}
 
+.store-location {
+	height: 19px;
+	width: 99px;
+	color: #00BBD3;
+	font-family: Roboto;
+	font-size: 16px;
+	line-height: 19px;
+}
 
+.timing {
+	height: 24px;
+	width: 94px;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 16px;
+	line-height: 24px;
+	text-align: right;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.side-nav {
+  width: auto !important;
+}
 
 
 

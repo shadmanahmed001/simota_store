@@ -61,8 +61,13 @@ getOrder: function(request, response) {
           response.json(err)
         }
         else {
-          console.log('got order', order);
+          // if more than one order instance the clear them
+          // else if only one instance then send taht one instance
+          // console.log('got order', order);
           // validation if the order exists then delete it
+          console.log('************');
+          console.log(order[order.length-1]);
+          return
           response.json(order[0])
         }
       })

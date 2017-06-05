@@ -9,7 +9,8 @@ var OrderSchema = new mongoose.Schema({
     item: {type: Schema.Types.ObjectId, ref: 'Product'},
     quantityBought: {type: Number, required: true, min: 1}
   }],
-  dateOfOrder: {type: String, default: new Date().toLocaleDateString()}
+  dateOfOrder: {type: String, default: new Date().toLocaleDateString()},
+  pickedUp: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Orders', OrderSchema)

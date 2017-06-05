@@ -2,6 +2,7 @@
 app.factory('cartFactory', ['$http', function($http) {
   var factory = {};
 
+
   factory.usercart = function(email, callback) {
       $http.post('/usercart', email).then(function(returned_data){
         console.log("getting logged in user cart", returned_data.data);
