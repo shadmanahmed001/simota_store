@@ -27,6 +27,7 @@ console.log('this should be the user', data);
 getCartTotal(data)
 });
 
+
 //   var CheckingUser = function () {
 //   if (!$cookieStore.get('email')) {
 //     console.log("Not Logged In");
@@ -118,10 +119,17 @@ $scope.minus = function(product) {
 // jQuery
 $(".button-collapse").sideNav();
 
+$('ul.tabs').tabs();
+
 $(".searchToggle").click(function() {
   $("#searchDiv").slideToggle( "slow" );
 });
 
+// $(".button-collapse").sideNav({
+//     closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+//     draggable: true // Choose whether you can drag to open on touch screens
+//   }
+// );
 
 
 // end of the controller
