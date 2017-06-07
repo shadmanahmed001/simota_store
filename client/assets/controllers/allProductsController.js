@@ -22,7 +22,9 @@ function getCartTotal(data){
 
 productsFactory.usercart({"email": email}, function(data) {
 $scope.user = data;
-$scope.cart = data.cart
+if (data.cart){
+  $scope.cart = data.cart
+}
 console.log('this should be the user', data);
 getCartTotal(data)
 });

@@ -102,13 +102,13 @@ app.delete('/products/:id', function(request, response) {
 
 //This is the redirect to set token page
 app.get('/mainpage/:id', function(request, response) {
-  console.log("hello at teh routhe paret");
+  console.log("Redirecting to main page");
   return response.redirect('/#!/mainpage/' + request.params.id)
 });
 
 // This is to verify the token and send the email and name
 app.use(function(request, response, next) {
-
+// console.log(request.headers['x-access-token']);
   var token = request.body.token || request.body.query || request.headers['x-access-token'];
 
   if (token){
@@ -122,12 +122,13 @@ app.use(function(request, response, next) {
       }
     });
   } else {
+    console.log('No token provided ');
     response.json({success: false, message: 'No token provided'});
   }
 });
 
 app.post('/verifytoken', function(request, response){
-  console.log('inside the server verifytoken func');
+  console.log('Inside verify token func');
   response.send(request.decoded);
 });
 
@@ -155,6 +156,10 @@ app.post('/getorder', function(request, response) {
   orders.getOrder(request, response)
 })
 
+app.post('/applepay', function(request, response) {
+  console.log('in the server');
+  console.log(request.body.appleToken);
+})
 
 
 }

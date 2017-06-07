@@ -19,31 +19,36 @@ Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
 Stripe.applePay.checkAvailability(function(available) {
   if (available) {
-    document.getElementById('apple-pay-button').style.display = 'block';
+    console.log('it is available');
+    document.getElementById('paywithapplepay').style.display = 'inline-block';
   }
 });
-
+      // $http.post('/charges', { token: result.token.id, amount: $scope.totalPrice })
 $scope.applePayButtonPressed = function() {
-  console.log('debug1');
+  console.log('Apple Pay Started');
   beginApplePay();
   function beginApplePay() {
-    console.log('inside the begin pay');
     var paymentRequest = {
       countryCode: 'US',
       currencyCode: 'USD',
       total: {
         label: 'Smiota Store | Workday',
-        amount: String($scope.total) // make var for this total
+        amount: String($scope.totalPrice) // make var for this total
       }
     };
-    var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
-      console.log(paymentRequest);
-      console.log('here');
-      $http.post('/charges', { token: result.token.id, amount: $scope.total }).done(function(){
-        completion(ApplePaySession.STATUS_SUCCESS);
-        // redirect to recipt page
-        $location.path('/recipt')
-      }).fail(function() {
+    var session = Stripe.applePay.buildSession(paymentRequest,
+    function(result, completion) {
+      console.log(cartFactory);
+      // cartFactory.applePay({token: result.token.id}).done(function() {
+      //   completion(ApplePaySession.STATUS_SUCCESS);
+
+
+
+    $.post("/applepay", { appleToken: result.token.id }).done(function() {
+      completion(ApplePaySession.STATUS_SUCCESS);
+      // You can now redirect the user to a receipt page, etc.
+      window.location.href = '/success.html';
+    }).fail(function() {
         completion(ApplePaySession.STATUS_FAILURE);
       });
     }, function(error){
@@ -53,7 +58,6 @@ $scope.applePayButtonPressed = function() {
       console.log(session);
       console.log("User hit the cancel button in the payment window");
     };
-    console.log('test');
     session.begin();
   }
   // $location.url('checkout')

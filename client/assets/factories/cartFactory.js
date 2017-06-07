@@ -32,6 +32,15 @@ app.factory('cartFactory', ['$http', function($http) {
     });
   }
 
+  factory.applePay = function(token) {
+    console.log('printiiing');
+    console.log(token);
+    $http.post('/applepay', token).then(function(returned_data) {
+      console.log('returned data from AP', returned_data);
+      console.log('should you have a callback?');
+    })
+  }
+
 //   factory.show = function($routeParams, callback) {
 //     $http.get('/edit/'+$routeParams ).then(function(response){
 //       if(typeof callback === 'function'){
