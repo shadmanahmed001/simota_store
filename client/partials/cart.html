@@ -60,7 +60,7 @@
 
 </div>
 <div class="col s12 right-align" style="height: auto; width: auto;">
-  <button type="button" class="payBtn" ng-click= "makeOrder()"><span class="pay-with-apply-pay">Pay with Apple Pay</span></button>
+  <button type="button" class="payBtn" ng-click= "applePayButtonPressed()"><span class="pay-with-apply-pay">Pay with Apple Pay</span></button>
 </div>
 
 <div class="divider" style="margin-top: 1.4em; margin-bottom: 1.4em"></div>
@@ -75,6 +75,8 @@
   <div style="display: inline-block; height: auto; width: 10em; vertical-align: top;">
 
     <p class="productName products" style="width: 7.1em; height: auto; margin-bottom: 0px; "><span ng-bind="item.item.name"></span></p><br>
+
+    <!-- <button type="button" class="removeItem" value="Remove" ng-click="deleteFromCart(item)" style="display; margin-left: 10px;">Remove</button> -->
 
     <input type="submit" class="removeItem" value="Remove" ng-click="deleteFromCart(item)" style="display; margin-left: 10px;">
   </div>

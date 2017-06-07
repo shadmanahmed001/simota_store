@@ -14,6 +14,51 @@ var email = $cookieStore.get('email')
 };
 CheckingUser();
 
+// Stripe
+Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
+Stripe.applePay.checkAvailability(function(available) {
+  if (available) {
+    document.getElementById('apple-pay-button').style.display = 'block';
+  }
+});
+
+$scope.applePayButtonPressed = function() {
+  console.log('debug1');
+  beginApplePay();
+  function beginApplePay() {
+    console.log('inside the begin pay');
+    var paymentRequest = {
+      countryCode: 'US',
+      currencyCode: 'USD',
+      total: {
+        label: 'Smiota Store | Workday',
+        amount: String($scope.total) // make var for this total
+      }
+    };
+    var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
+      console.log(paymentRequest);
+      console.log('here');
+      $http.post('/charges', { token: result.token.id, amount: $scope.total }).done(function(){
+        completion(ApplePaySession.STATUS_SUCCESS);
+        // redirect to recipt page
+        $location.path('/recipt')
+      }).fail(function() {
+        completion(ApplePaySession.STATUS_FAILURE);
+      });
+    }, function(error){
+      console.log(error.message);
+    });
+    session.oncancel = function() {
+      console.log(session);
+      console.log("User hit the cancel button in the payment window");
+    };
+    console.log('test');
+    session.begin();
+  }
+  // $location.url('checkout')
+}
+
   cartFactory.usercart({"email": email}, function(data) {
   $scope.user = data;
   $scope.cart = data.cart
@@ -69,6 +114,7 @@ $scope.deleteFromCart = function(item) {
 
 $scope.makeOrder = function() {
   console.log($scope.user);
+  return
   cartFactory.makeOrder($scope.user, function(data) {
     console.log('this is from the makeorder',data);
     $location.path('/revieworder')
@@ -76,50 +122,7 @@ $scope.makeOrder = function() {
   })
 }
 
-// Stripe
-Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
-Stripe.applePay.checkAvailability(function(available) {
-  if (available) {
-    document.getElementById('apple-pay-button').style.display = 'block';
-  }
-});
-
-$scope.payButtonPressed = function() {
-  console.log('debug1');
-  beginApplePay();
-  function beginApplePay() {
-    console.log('inside the begin pay');
-    var paymentRequest = {
-      countryCode: 'US',
-      currencyCode: 'USD',
-      total: {
-        label: 'Smiota Store Workday',
-        amount: String($scope.total) // make var for this total
-      }
-    };
-    var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
-      console.log(paymentRequest);
-      console.log('here');
-      $http.post('/charges', { token: result.token.id, amount: $scope.total }).done(function(){
-        completion(ApplePaySession.STATUS_SUCCESS);
-        // redirect to recipt page
-        $location.path('/recipt')
-      }).fail(function() {
-        completion(ApplePaySession.STATUS_FAILURE);
-      });
-    }, function(error){
-      console.log(error.message);
-    });
-    session.oncancel = function() {
-      console.log(session);
-      console.log("User hit the cancel button in the payment window");
-    };
-    console.log('test');
-    session.begin();
-  }
-  // $location.url('checkout')
-}
 
 
 // console.log($routeParams.id);
@@ -146,6 +149,12 @@ $scope.payButtonPressed = function() {
 
 // jQuery
 $(".button-collapse").sideNav();
+
+$('ul.tabs').tabs();
+
+$(".searchToggle").click(function() {
+  $("#searchDiv").slideToggle( "slow" );
+});
 
 
 
