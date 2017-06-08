@@ -3,6 +3,7 @@ var products = require('../controllers/product')
 var users = require('../controllers/user')
 var orders = require('../controllers/order')
 var adminUser = require('../controllers/adminUser')
+var stripeCtrl = require('../controllers/stripe')
 // var passport = require('./passport')
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
@@ -122,7 +123,6 @@ app.use(function(request, response, next) {
       }
     });
   } else {
-    console.log('No token provided ');
     response.json({success: false, message: 'No token provided'});
   }
 });
@@ -157,8 +157,7 @@ app.post('/getorder', function(request, response) {
 })
 
 app.post('/applepay', function(request, response) {
-  console.log('in the server');
-  console.log(request.body.appleToken);
+  stripeCtrl.applepay(request, response)
 })
 
 

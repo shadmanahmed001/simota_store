@@ -57,13 +57,13 @@ require('./server/config/passport')
 routes_setter(app, passport);
 
 // ***********************************************************
-// https.createServer(options, app).listen(process.env.PORT || 8000, function() {
-//   console.log("Smiota Store HTTPS at 8000");
-// });
-
-http.createServer(app).listen(process.env.PORT || 8000, function() {
-    console.log('HTTP Smiota Store at:', process.env.PORT);
+https.createServer(options, app).listen(process.env.PORT || 8000, function() {
+  console.log("Smiota Store HTTPS at 8000");
 });
+
+// http.createServer(app).listen(process.env.PORT || 8000, function() {
+//     console.log('HTTP Smiota Store at:', process.env.PORT);
+// });
 
 // ***********************************************************
 

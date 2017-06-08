@@ -6,6 +6,42 @@ var Order = mongoose.model('Orders')
 
 module.exports = {
 
+// After the apple pay
+makeorder: function(request, response) {
+  console.log('at order');
+  console.log(request.decoded.email);
+  var newOrder = new Order()
+  User.findOne({email: request.decoded.email}, function(err, user){
+    if(err){
+      console.log('err in making order after apple pay', err);
+      response.json(err);
+    }
+    else {
+    newOrder.user = user._id;
+    console.log(user.cart);
+    for (var i = 0; i < user.cart.length; i++){
+      console.log('in for');
+      var x = {item: user.cart[i].item._id, quantityBought: user.cart[i].quantity }
+      newOrder.products.push(x)
+    }
+    // console.log('neworder', newOrder);
+  }
+  newOrder.save(function(err) {
+    if(err){
+      console.log(err);
+      // response.json(err)
+    }
+    else {
+      console.log('this is the new order', newOrder);
+      // response.json(newOrder)
+    }
+  })
+
+})
+},
+
+
+
 createorder: function(request, response) {
   console.log(request.body);
   var newOrder = new Order()

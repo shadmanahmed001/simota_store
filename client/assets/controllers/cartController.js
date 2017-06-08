@@ -1,5 +1,5 @@
 // console.log('cart');
-app.controller('cartController', ['$scope', 'cartFactory','$routeParams','$location', '$cookieStore', function($scope, cartFactory, $routeParams, $location, $cookieStore){
+app.controller('cartController', ['$scope', 'cartFactory','$routeParams','$location', '$cookieStore', '$http', function($scope, cartFactory, $routeParams, $location, $cookieStore, $http){
 $scope.username = $cookieStore.get('username')
 var email = $cookieStore.get('email')
 
@@ -22,6 +22,9 @@ Stripe.applePay.checkAvailability(function(available) {
     console.log('it is available');
     document.getElementById('paywithapplepay').style.display = 'inline-block';
   }
+  else if (!available){
+    alert("Please use Safari to proceed with payment.")
+  }
 });
       // $http.post('/charges', { token: result.token.id, amount: $scope.totalPrice })
 $scope.applePayButtonPressed = function() {
@@ -38,19 +41,17 @@ $scope.applePayButtonPressed = function() {
     };
     var session = Stripe.applePay.buildSession(paymentRequest,
     function(result, completion) {
-      console.log(cartFactory);
-      // cartFactory.applePay({token: result.token.id}).done(function() {
-      //   completion(ApplePaySession.STATUS_SUCCESS);
 
-
-
-    $.post("/applepay", { appleToken: result.token.id }).done(function() {
-      completion(ApplePaySession.STATUS_SUCCESS);
-      // You can now redirect the user to a receipt page, etc.
-      window.location.href = '/success.html';
-    }).fail(function() {
+    $http.post('/applepay', { appleToken: result.token.id, amount: $scope.totalPrice } ).then(function(data) {
+      if (data.data.success){
+        completion(ApplePaySession.STATUS_SUCCESS);
+        // You can now redirect the user to a receipt page, etc.
+        window.location.href = '/success.html';
+      }
+      else {
         completion(ApplePaySession.STATUS_FAILURE);
-      });
+      }
+    })
     }, function(error){
       console.log(error.message);
     });
