@@ -19,7 +19,7 @@ var charge = stripe.charges.create({
   source: token,
 }, function(err, charge) {
   if (charge){
-    console.log('success');
+    console.log('success in Apple Pay');
     response.json({"success": true})
     return Order.makeorder(request, response)
 

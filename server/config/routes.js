@@ -160,5 +160,8 @@ app.post('/applepay', function(request, response) {
   stripeCtrl.applepay(request, response)
 })
 
+app.get('/orderdetails/:id', function(request, response) {
+  orders.getOrder(request, response)
+})
 
 }

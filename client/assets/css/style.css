@@ -378,6 +378,34 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
   width: auto !important;
 }
 
+.ready-for-pickup {
+	height: 2em;
+	width: 10.9em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.42em;
+	font-weight: 400;
+	line-height: 2em;
+  margin-left: 1.15em;
+}
+.orderItem {
+	height: 1.7em;
+	width: 3.2em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.15em;
+	line-height: 1.7em;
+  margin: 0px;
+  margin-top: .5em;
+}
+.orderLink {
+	height: 1.35em;
+	width: 5.7em;
+	color: #00BBD3;
+	font-family: Roboto;
+	font-size: 1.15em;
+	line-height: 1.35em;
+}
 
 
 

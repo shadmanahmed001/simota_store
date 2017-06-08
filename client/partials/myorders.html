@@ -1,0 +1,90 @@
+<!-- <h5>Review your order</h5>
+{{username}}'s Order -->
+<nav class="nav-extended" style="background-color: #00BBD3; width:100%;">
+
+   <div class="nav-wrapper">
+     <!-- <p class="smiota-store-workd">Smiota Store | Workday</p> -->
+
+
+
+     <!-- <div class="right-align searchBar"> -->
+
+     <!-- <a class="dropdown-button" href="#" data-activates="dropdown1" style="display: inline-block;"> <i class="material-icons ">search</i></a> -->
+
+   <!-- <button class="searchToggle" style="display: inline-block;"><i class="material-icons ">search</i></button>
+
+
+     <a href="#!/cart" style="display: inline-block; margin-left: 1.70em;"><i class="material-icons">shopping_cart</i></a>
+    </div> -->
+
+     <!-- <a href="#" class="brand-logo">Logo</a> -->
+     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="#">Shop</a></li>
+       <li class="active"><a href="#!/orders">My Orders</a></li>
+       <li><a href="#!/account">My Account</a></li>
+     </ul>
+     <ul class="side-nav" id="mobile-demo">
+       <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em; margin-top: 80px; padding-top:10px;    font-weight: 300;" href="#">Shop</a></li>
+       <li class="active"><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em;padding-top:10px; font-weight: 300;" href="#!/orders">My Orders</a></li>
+       <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em;padding-top:10px;font-weight: 300;" href="#!/account">My Account</a></li>
+      <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em;padding-top:10px;font-weight: 300; margin-top: 50px;"  href="#!/signout">Sign Out</a></li>
+     </ul>
+   </div>
+
+   <div class="nav-content">
+     <ul class="tabs tabs-transparent">
+       <li class="tab"><a class="active" href="#open">Open Orders</a></li>
+       <li class="tab"><a href="#completed">Completed</a></li>
+     </ul>
+   </div>
+
+ </nav>
+ <div class="container">
+
+  <div id="open" class="col s12 m4 l4">
+
+
+  <div class="row">
+    <h3 class="ready-for-pickup">Ready for Pickup</h3>
+    <div ng-repeat="x in order" class="row" style="margin-left: 1.15em; width: auto;">
+      <a class="orderLink" href="/#!/details/{{x._id}}">Order {{x._id}}</a>
+      <p class="orderItem">{{items}} item</p>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="row">
+    <h3 class="ready-for-pickup">Pick up Later</h3>
+    <div ng-repeat="x in order" class="row" style="margin-left: 1.15em; width: auto;">
+      <a class="orderLink" href="/#!/details/{{x._id}}">Order {{x._id}}</a>
+      <p class="orderItem">{{items}} item</p>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+
+
+
+
+<!-- end of open div -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="completed" class="col s12 m4 l4">
+    completed
+  </div>
+</div>

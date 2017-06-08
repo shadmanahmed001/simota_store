@@ -39,10 +39,18 @@ app.config(function ($routeProvider) {
     templateUrl: 'partials/cart.html',
     controller : 'cartController'
   })
-  .when('/revieworder', {
-    templateUrl: 'partials/revieworder.html',
-    controller : 'checkoutController'
+  .when('/orders', {
+    templateUrl: 'partials/myorders.html',
+    controller : 'ordersController'
   })
+  .when('/details/:id', {
+    templateUrl: 'partials/orderdetails.html',
+    controller : 'ordersController'
+  })
+  // .when('/revieworder', {
+  //   templateUrl: 'partials/revieworder.html',
+  //   controller : 'checkoutController'
+  // })
   .when('/signout', {
     templateUrl: 'partials/signout.html',
     controller : 'signoutController'

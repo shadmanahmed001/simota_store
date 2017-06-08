@@ -6,18 +6,26 @@ $scope.username = $cookieStore.get('username')
 var email = $cookieStore.get('email')
 
 function getCartTotal(data){
-  console.log('this is cart json', data);
-  var sum = 0
+  var sum = 0;
+  var price = 0;
   for (var i = 0; i < data.cart.length; i++){
-    sum += data.cart[i].quantity
+    if (data.cart[i].quantity > 1){
+      price += data.cart[i].item.price * data.cart[i].quantity
+      sum += data.cart[i].quantity
+    }
+    else {
+      price += data.cart[i].item.price
+      sum += data.cart[i].quantity
+    }
   }
   if (data.cart.length === 0){
     sum = 0
+    price = 0
   }
-  console.log('total should be');
-  console.log(sum);
   $scope.cartTotal = sum;
+  $scope.totalPrice = price;
 }
+// FIGURE OUT THE TAX
 
 
 productsFactory.usercart({"email": email}, function(data) {
@@ -30,19 +38,18 @@ getCartTotal(data)
 });
 
 
-//   var CheckingUser = function () {
-//   if (!$cookieStore.get('email')) {
-//     console.log("Not Logged In");
-//     $location.path('/');
-//   } else {
-//     console.log("logged in");
-//     console.log('testing uncomment at end');
-//     console.log(window.location.href)
-//
-//     $location.path('/all')
-//   }
-// };
-// CheckingUser();
+var CheckingUser = function () {
+if (!window.localStorage.token) {
+  console.log("Not Logged In");
+  $location.path('/');
+} else {
+  // console.log($cookieStore.get('email'));
+  // console.log(window.localStorage.token);
+  console.log("logged in");
+  // $location.path('/all')
+}
+};
+CheckingUser();
 
 $scope.username = $cookieStore.get('username')
 

@@ -46,7 +46,7 @@ $scope.applePayButtonPressed = function() {
       if (data.data.success){
         completion(ApplePaySession.STATUS_SUCCESS);
         // You can now redirect the user to a receipt page, etc.
-        window.location.href = '/success.html';
+        window.location.href = '/#!/orders';
       }
       else {
         completion(ApplePaySession.STATUS_FAILURE);
@@ -105,16 +105,15 @@ $scope.editCart = function(item, newQuantity){
       $scope.user = data;
     }
     // $scope.cart = data.cart
-    $location.path('/cart')
+    // $location.path('/cart')
   })
 };
 
 $scope.deleteFromCart = function(item) {
   cartFactory.deleteFromCart({"email": email, "cartId": item._id}, function(data) {
-    $scope.cart = data.cart
-    $scope.user = data;
-    $location.path('/cart')
-  })
+    getCartTotal(data)
+    return location.reload();
+    })
 };
 
 $scope.makeOrder = function() {
