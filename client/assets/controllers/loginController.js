@@ -20,7 +20,7 @@ app.controller('loginController', ['$scope', '$location', 'userFactory', '$cooki
 
   }
 };
-CheckingUser();
+// CheckingUser();
 
 
 // Sign Out Of Google

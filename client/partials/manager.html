@@ -1,1 +1,37 @@
-manager
+<div class="container">
+  <div class="row">
+    <h6>This is All Orders that need to be stocked</h6>
+    <div class="row" ng-repeat="x in openOrders">
+      <p class="ready-for-pickup" style="display: inline-block;">Stock this<a class="orderLink" href="/#!/manager/stockorder/{{x._id}}"> order</a></p>
+      <span> {{ x.dateOfOrder}}</span>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

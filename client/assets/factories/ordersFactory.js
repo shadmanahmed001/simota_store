@@ -12,7 +12,7 @@ factory.getOrder = function(email, callback) {
 
 factory.orderdetails = function(orderID, callback) {
   $http.get('/orderdetails/'+ orderID).then(function(returned_data) {
-    console.log('got the order details', returned_data);
+    // console.log('got the details', returned_data);
     callback(returned_data)
   })
 }

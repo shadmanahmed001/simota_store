@@ -24,82 +24,56 @@ var email = $cookieStore.get('email')
 };
 CheckingUser();
 
+  $scope.counter = [];
 
 
 
+// ordersFactory.getOrder({"email": email}, function(data) {
+//   console.log('USER ORDERS',data);
+//   $scope.order = data;
+//   $scope.object = [];
+//   for (var i = 0; i < data.length; i++){
+//     var sum = 0;
+//     for ( var k = 0; k < data[i].products.length; k++){
+//       sum = sum + data[i].products[k].quantityBought
+//     }
+//     $scope.object.push({"data": data[i], "value": sum })
+//   }
+// });
 
-ordersFactory.getOrder({"email": email}, function(data) {
-  console.log('this is the getorder',data);
-  $scope.order = data;
-  $scope.items = data.length;
-
-
-// TODO: get items to be picked up later
-
-  // if (data.products) {
-  //   for (var i = 0; i< data.products.length; i++){
-  //     total = data.products[i].item.price + total
-  //     $scope.total = total
-  //   }
-  // }
-})
-
-
-if ($routeParams){
-  console.log($routeParams.id);
+// Order Details Page
+if ($routeParams.id){
+  // console.log($routeParams.id);
   ordersFactory.orderdetails($routeParams.id, function(data){
-    console.log('this is the returned details', data.data);
-    $scope.details = data
+    console.log('CURRENT ORDER details', data.data);
+    $scope.details = data.data
+    $scope.products = data.data.products
+    var total = 0;
+    for (var i = 0; i < data.data.products.length; i++){
+      total = total + data.data.products[i].item.price
+    }
+    $scope.total = total
   })
+}
+else {
+  ordersFactory.getOrder({"email": email}, function(data) {
+    console.log('USER ORDERS',data);
+    $scope.order = data;
+    $scope.object = [];
+    for (var i = 0; i < data.length; i++){
+      var sum = 0;
+      for ( var k = 0; k < data[i].products.length; k++){
+        sum = sum + data[i].products[k].quantityBought
+      }
+      $scope.object.push({"data": data[i], "value": sum })
+    }
+  });
+
 }
 
 
 
-// Stripe
-// Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
-//
-// Stripe.applePay.checkAvailability(function(available) {
-//   if (available) {
-//     document.getElementById('apple-pay-button').style.display = 'block';
-//   }
-// });
 
-
-// $scope.payButtonPressed = function() {
-//   console.log('debug1');
-//   beginApplePay();
-//   function beginApplePay() {
-//     console.log('inside the begin pay');
-//     var paymentRequest = {
-//       countryCode: 'US',
-//       currencyCode: 'USD',
-//       total: {
-//         label: 'Smiota Store Workday',
-//         amount: String($scope.total) // make var for this total
-//       }
-//     };
-//     var session = Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
-//       console.log(paymentRequest);
-//       console.log('here');
-//       $http.post('/charges', { token: result.token.id, amount: $scope.total }).done(function(){
-//         completion(ApplePaySession.STATUS_SUCCESS);
-//         // redirect to recipt page
-//         $location.path('/recipt')
-//       }).fail(function() {
-//         completion(ApplePaySession.STATUS_FAILURE);
-//       });
-//     }, function(error){
-//       console.log(error.message);
-//     });
-//     session.oncancel = function() {
-//       console.log(session);
-//       console.log("User hit the cancel button in the payment window");
-//     };
-//     console.log('test');
-//     session.begin();
-//   }
-//   // $location.url('orders')
-// }
 
 // jQuery
 $(".button-collapse").sideNav();

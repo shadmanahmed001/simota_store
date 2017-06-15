@@ -33,7 +33,7 @@ module.exports = function(app, passport) {
       clientSecret: '5fa5072baf46574bcf930bf0036e9bdd',
       // callbackURL: 'https://smiota-store.herokuapp.com/auth/facebook/callback', // What Facebook gets after the auth is done
 
-      callbackURL: 'http://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
+      callbackURL: 'https://localhost:8000/auth/facebook/callback', // What Facebook gets after the auth is done
       profileFields: ['id', 'displayName', 'email', 'gender', 'age_range']
     },
     function(accessToken, refreshToken, profile, done) {    // Saving the user

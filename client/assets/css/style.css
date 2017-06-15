@@ -290,7 +290,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 }
 .payBtn {
   /*border: 1px solid black;*/
-  display: none
+  display: none;
 	height: 2.6em;
 	width: 11.5em;
 	border-radius: .15em;
@@ -406,6 +406,72 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 	font-size: 1.15em;
 	line-height: 1.35em;
 }
+
+.yellowBanner{
+	height: 2.8em;
+	width: auto;
+	background-color: #F5A623;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.order-3612 {
+	height: 2.2em;
+	width: 8.5em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.7em;
+	line-height: 2.3em;
+  display: inline-block;
+}
+.ready-for-pickup {
+	height: 1.7em;
+	width: 8.5em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.15em;
+	line-height: 1.7em;
+  margin-left: 0px;
+  margin-top: 1.15em;
+}
+.please-pick-up-your {
+	height: 2em;
+	width: auto;
+	color: rgba(255,255,255,0.87);
+	font-family: Roboto;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 2.8em;
+  vertical-align: center;
+  margin-left: 1.15em;
+  /*margin-top: px;*/
+}
+.items {
+	height: 2em;
+	width: 24em;
+	color: rgba(0,0,0,0.87);
+	font-family: Roboto;
+	font-size: 1.5em;
+	font-weight: 500;
+	line-height: 2em;
+  margin-left: 1.15em;
+}
+#qrcode {
+  width:160px;
+  height:160px;
+  margin-top:15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

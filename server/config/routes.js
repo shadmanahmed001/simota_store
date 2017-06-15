@@ -23,6 +23,14 @@ const keySecret = process.env.SECRET_KEY;
 
 module.exports = function(app){
 
+app.get('/managergetallopen', function(request, response) {
+  orders.managergetallopen(request, response);
+});
+
+app.get('/stockorder/:id', function(request, response) {
+  orders.managerstockorder(request, response);
+});
+
 app.get('/products', function(request, response) {
   products.index(request, response);
 });
@@ -161,7 +169,11 @@ app.post('/applepay', function(request, response) {
 })
 
 app.get('/orderdetails/:id', function(request, response) {
-  orders.getOrder(request, response)
+  orders.orderdetails(request, response)
 })
+
+
+
+
 
 }

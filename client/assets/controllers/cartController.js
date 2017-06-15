@@ -46,7 +46,7 @@ $scope.applePayButtonPressed = function() {
       if (data.data.success){
         completion(ApplePaySession.STATUS_SUCCESS);
         // You can now redirect the user to a receipt page, etc.
-        window.location.href = '/#!/orders';
+        window.location.href = '/#!/pickup';
       }
       else {
         completion(ApplePaySession.STATUS_FAILURE);
@@ -149,6 +149,7 @@ $scope.makeOrder = function() {
 //     $location.path('/adminaddproduct')
 //   })
 // };
+
 
 
 // jQuery

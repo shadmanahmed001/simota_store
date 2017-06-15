@@ -8,7 +8,7 @@ var Product = mongoose.model('Product')
 
 module.exports = {
 
-// After the apple pay
+// After the Apple Pay
 makeorder: function(request, response) {
   var newOrder = new Order()
   User.findOne({email: request.decoded.email}, function(err, user){
@@ -40,17 +40,25 @@ makeorder: function(request, response) {
       // response.json(newOrder)
       // minus products
       for (var i = 0; i < newOrder.products.length; i++){
-        // console.log('inside the for', newOrder.products[i]._id);
         var id = newOrder.products[i].item
-        // console.log('new order prod',id);
-        // return
+        var qB = newOrder.products[i].quantityBought
         Product.findOne({_id: id}, function(err, product){
           if (err){
             console.log('err');
           }
           else {
-            console.log('yay');
-            console.log(product);
+            product.quantity = product.quantity - qB
+            console.log(product.quantity);
+            product.save(function(err){
+              if(err){
+                console.log(err);
+                response.json(err);
+              }
+              else{
+                console.log('updated the quantity');
+                // response.json(user)
+              }
+            })
             // TODO: MINUS THE quantityBought AND SAVE
           }
         })
@@ -58,7 +66,6 @@ makeorder: function(request, response) {
       }
     }
   })
-  return
   console.log('this is the user',user);
   user.cart = []
   console.log('user now', user);
@@ -69,8 +76,8 @@ makeorder: function(request, response) {
       return response.json(err)
     }
     else {
-      console.log('this is the new user', user);
-      return response.json(user)
+      console.log('this is the user with empty shopping cart', user);
+      // return response.json(user)
     }
   })
 })
@@ -150,7 +157,7 @@ getOrder: function(request, response) {
 
 orderdetails: function(request, response) {
   console.log(request.params.id);
-  Order.find({_id: request.params.id}).populate('products.item._id').exec(function(err, order) {
+  Order.findOne({_id: request.params.id}).populate('products.item').exec(function(err, order) {
     if(err){
       console.log('error in orderdetails',err);
     }
@@ -160,9 +167,34 @@ orderdetails: function(request, response) {
     }
   })
 
+},
+
+managerstockorder: function(request, response) {
+  console.log(request.params.id);
+  Order.findOne({_id: request.params.id}).populate('products.item').populate('user').exec(function(err, order) {
+    if(err){
+      console.log('error in orderdetails',err);
+    }
+    else {
+      console.log('order details', order);
+      return response.json(order)
+    }
+  })
+
+},
+
+
+managergetallopen: function(request, response){
+  Order.find({pickedUp: false}, function(err, orders) {
+    if(err){
+      console.log('didnt work');
+    }
+    else {
+      // console.log('this is all orders that are not picked up', orders);
+      return response.json(orders)
+    }
+  })
 }
-
-
 
 //
 // show: function(request,response){

@@ -21,12 +21,12 @@
      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
      <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a href="#">Shop</a></li>
+       <li><a href="#!/all">Shop</a></li>
        <li class="active"><a href="#!/orders">My Orders</a></li>
        <li><a href="#!/account">My Account</a></li>
      </ul>
      <ul class="side-nav" id="mobile-demo">
-       <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em; margin-top: 80px; padding-top:10px;    font-weight: 300;" href="#">Shop</a></li>
+       <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em; margin-top: 80px; padding-top:10px;    font-weight: 300;" href="#!/all">Shop</a></li>
        <li class="active"><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em;padding-top:10px; font-weight: 300;" href="#!/orders">My Orders</a></li>
        <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em;padding-top:10px;font-weight: 300;" href="#!/account">My Account</a></li>
       <li><a style="color: #00BBD3; font-family: Roboto; font-size: 1.15em; line-height: 1.7em;padding-top:10px;font-weight: 300; margin-top: 50px;"  href="#!/signout">Sign Out</a></li>
@@ -43,14 +43,15 @@
  </nav>
  <div class="container">
 
-  <div id="open" class="col s12 m4 l4">
+  <div id="open" class="col s12 m4 l4" >
 
 
   <div class="row">
     <h3 class="ready-for-pickup">Ready for Pickup</h3>
-    <div ng-repeat="x in order" class="row" style="margin-left: 1.15em; width: auto;">
-      <a class="orderLink" href="/#!/details/{{x._id}}">Order {{x._id}}</a>
-      <p class="orderItem">{{items}} item</p>
+    <div ng-repeat="x in object" class="row" style="margin-left: 1.15em; width: auto;">
+      <a class="orderLink" href="/#!/details/{{x.data._id}}">Order {{x.data.dateOfOrder}}</a>
+      <p class="orderItem">{{ x.value }} item</p>
+
     </div>
     <div class="divider"></div>
   </div>

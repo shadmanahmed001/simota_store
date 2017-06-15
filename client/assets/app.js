@@ -33,7 +33,7 @@ app.config(function ($routeProvider) {
   })
   .when('/manager', {
     templateUrl: 'partials/manager.html',
-    // controller : 'adminAddProductController'
+    controller : 'managerController'
   })
   .when('/cart', {
     templateUrl: 'partials/cart.html',
@@ -46,6 +46,14 @@ app.config(function ($routeProvider) {
   .when('/details/:id', {
     templateUrl: 'partials/orderdetails.html',
     controller : 'ordersController'
+  })
+  .when('/pickup/:id', {
+    templateUrl: 'partials/pickup.html',
+    controller : 'pickupController'
+  })
+  .when('/manager/stockorder/:id', {
+    templateUrl: 'partials/stockorder.html',
+    controller : 'managerController'
   })
   // .when('/revieworder', {
   //   templateUrl: 'partials/revieworder.html',

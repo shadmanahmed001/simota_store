@@ -7,29 +7,49 @@
 <div class="container">
 
 <div class="row">
-  <p>Order </p>
-  <p>Ready for pickup</p>
+  <p class="order-3612">Order {{details._id}}</p>
+  <p class="ready-for-pickup">Ready for <a class="orderLink" href="/#!/pickup/{{details._id}}">pickup</a></p>
 </div>
 
-<div class="row">
-  <p>Please pick up your order before June 24th.</p>
+<!-- <a class="orderLink" href="/#!/pickup/{{details._id}}">pickup</a> -->
+
+<div class="row yellowBanner" >
+  <span class="please-pick-up-your">Please pick up your order before June 24th.</span>
 </div>
 
 <div class="row">
   <div class="col s6">
-    <p>Total</p>
-    <p>Taxes</p>
-    <p>Order Total</p>
+    <p class="cart_texts" style="width: 2.3em">Total</p>
+    <p class="cart_texts" style="width: 2.65em">Taxes</p>
+    <p class="cart_texts" style="width: 5em">Order Total</p>
   </div>
   <div class="col s6">
-    <p>total money</p>
-    <p>taxes</p>
-    <p>order total</p>
+    <p class="cart_texts right-align" style="margin-right: 1.15em">{{ total }}</p>
+    <p class="cart_texts right-align" style="margin-right: 1.15em">taxes</p>
+    <p class="right-align total" style="margin-right: 1.15em">{{ total }}</p>
   </div>
 </div>
-<div class="divider"></div>
-<p>Items</p>
+<!-- <div class="divider"></div> -->
 <div class="row">
+  <p class="items">Items</p>
+</div>
+
+<div class="row left-align" ng-repeat=" p in products">
+  <div  class="col s4" style="display: inline-block;">
+    <img src="{{p.item.image}}" class="responsive-img" style="height: 80px; width: 80px; margin-left: 1.15em;">
+  </div>
+
+  <div class="col s4 center-align">
+
+    <p class="productName products" style="width: 7.1em; height: auto; margin-bottom: 0px; "><span ng-bind="p.item.name"></span></p>
+  </div>
+
+<div class="col s4 right-align">
+
+      <p class=" right-align cartItemPrice products">$<span ng-bind="p.item.price"></span></p>
+    </div>
+
+
   <div class="divider"></div>
 </div>
 
